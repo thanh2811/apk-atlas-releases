@@ -34,10 +34,6 @@
           <a href="#lien-he">Liên hệ</a>
         </nav>
       </div>
-      <p class="sidebar-foot">
-        Hỗ trợ:<br>
-        <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
-      </p>
     </aside>
 
     <div class="main-wrap">
@@ -64,85 +60,169 @@
         <p class="eyebrow">Vận hành hàng ngày</p>
         <h1>Hướng dẫn sử dụng</h1>
         <p class="lead">
-          Tạo project, chạy phân tích (pipeline), rồi hỏi agent bằng tiếng thường.
-          Kết quả nằm ở tab APIs / Output và trong thư mục workspace.
+          Ba việc lặp lại mỗi ngày: tạo project cho app hoặc website muốn xem,
+          đợi iAtlas phân tích xong, rồi hỏi agent bằng tiếng thường.
+          Kết quả xem ở tab <strong>APIs</strong> hoặc màn <strong>Output</strong>.
         </p>
 
         <h2>Luồng tổng quan</h2>
         <div class="flow" aria-label="Luồng sử dụng">
-          <span>Mở iAtlas</span>
+          <span>Tạo project</span>
           <span class="arrow" aria-hidden="true">→</span>
-          <span>Setup lần đầu</span>
+          <span>Chạy phân tích</span>
           <span class="arrow" aria-hidden="true">→</span>
-          <span>Home (Agent)</span>
+          <span>Hỏi agent</span>
           <span class="arrow" aria-hidden="true">→</span>
-          <span>Tạo project APK / Web</span>
-          <span class="arrow" aria-hidden="true">→</span>
-          <span>Chạy pipeline</span>
-          <span class="arrow" aria-hidden="true">→</span>
-          <span>Chat + xem Output / APIs</span>
+          <span>Lấy kết quả ở APIs / Output</span>
         </div>
 
         <p>
-          Thanh điều hướng chính: <strong>Agent (Home)</strong> · <strong>Output</strong> · <strong>Settings</strong>.
-          Trong một project: tab <strong>Agent</strong> · <strong>Sources</strong> · <strong>APIs</strong> · <strong>Browser</strong>.
+          Ba màn chính: <strong>Agent</strong> (làm việc) · <strong>Output</strong> (file kết quả) ·
+          <strong>Settings</strong>. Trong một project có 4 tab:
+          <strong>Agent</strong> · <strong>Sources</strong> · <strong>APIs</strong> · <strong>Browser</strong>.
         </p>
 
-        <h2>1. Tạo project APK</h2>
-        <ol>
-          <li>Vào <strong>Agent</strong> → sidebar trái → <strong>New project</strong>.</li>
-          <li>Chọn chế độ <strong>APK</strong>.</li>
-          <li>Nhập <em>package name</em> Android (ví dụ <code>com.example.app</code>), tên hiển thị tùy chọn.</li>
-          <li>Bật <strong>Download now</strong> nếu muốn tải APK ngay (mặc định thường bật).</li>
-          <li>Tạo project → theo dõi tiến trình tải / khởi tạo trên sidebar.</li>
-          <li>Khi sẵn sàng, nhấn <strong>Run pipeline</strong> (có thể ghi mục tiêu crawl trong ô chat trước khi chạy).</li>
-        </ol>
-        <p>Các bước pipeline APK (sidebar): Download → Decompile → Detect framework → Native scan → Source graph → Crawl plan → Replay.</p>
-        <p>Kết quả chạy nằm dưới <code>~/.ai-crawler/output/&lt;project&gt;/&lt;timestamp&gt;/</code> và mở được từ màn <strong>Output</strong>.</p>
+        <h2>1. Tạo project &amp; chạy phân tích</h2>
+        <p>Chọn loại dự án bạn cần — thao tác hai bên hơi khác nhau.</p>
 
-        <h2>2. Tạo project Web</h2>
-        <ol>
-          <li><strong>New project</strong> → chọn <strong>Web</strong>.</li>
-          <li>Nhập URL gốc (http/https), tên hiển thị tùy chọn.</li>
-          <li><strong>Run pipeline</strong>. Các bước: Browser → Probe → Fingerprint → Crawl.</li>
-          <li>
-            Nếu gặp Cloudflare / CAPTCHA: mở tab <strong>Browser</strong>, hoàn thành challenge trên trang,
-            rồi trong chat Agent trả lời <code>done</code> để tiếp tục.
-          </li>
-        </ol>
+        <div class="os-tabs" data-tabs="project">
+          <div class="os-tablist" role="tablist" aria-label="Loại dự án">
+            <button type="button" class="os-tab is-active" role="tab" data-tab="apk" aria-selected="true" aria-controls="panel-apk" id="tab-apk">App Android (APK)</button>
+            <button type="button" class="os-tab" role="tab" data-tab="web" aria-selected="false" aria-controls="panel-web" id="tab-web" tabindex="-1">Website (Web)</button>
+          </div>
+
+          <div class="os-panel is-active" role="tabpanel" data-panel="apk" id="panel-apk" aria-labelledby="tab-apk">
+            <ol class="steps">
+              <li>
+                <strong>Mở New project</strong>
+                Ở màn <strong>Agent</strong>, sidebar trái → <strong>New project</strong> → chọn loại <strong>APK</strong>.
+              </li>
+              <li>
+                <strong>Nhập package name</strong>
+                Dạng <code>com.example.app</code> — lấy từ link Google Play của app
+                (phần sau <code>?id=</code>). Ô <em>Name</em> để trống cũng được.
+              </li>
+              <li>
+                <strong>Bấm Create project</strong>
+                Giữ nguyên ô <em>Download &amp; decompile right after creating</em> (mặc định bật) thì
+                app tự tải APK và phân tích luôn — không phải bấm gì thêm.
+              </li>
+              <li>
+                <strong>Đợi 4 bước ở mục Pipeline</strong>
+                <span class="flow flow-inline" aria-label="Các bước phân tích APK">
+                  <span>Download</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Decompile</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Detect framework</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Native scan</span>
+                </span>
+                Xong bước cuối là hỏi agent được. Nếu lúc tạo bạn tắt ô tải sẵn, bấm
+                <strong>Download &amp; decompile</strong> ở sidebar.
+                <figure class="shot shot-wide">
+                  <a href="assets/pipeline-done.png" target="_blank" rel="noopener">
+                    <img src="assets/pipeline-done.png" alt="Màn Agent của iAtlas khi pipeline đã chạy xong 4/4 bước">
+                  </a>
+                  <figcaption>
+                    Pipeline hiện <strong>4 / 4 · complete</strong> ở sidebar trái — lúc này gõ câu hỏi vào ô chat được rồi.
+                    Bấm vào ảnh để xem cỡ lớn.
+                  </figcaption>
+                </figure>
+              </li>
+            </ol>
+          </div>
+
+          <div class="os-panel" role="tabpanel" data-panel="web" id="panel-web" aria-labelledby="tab-web" hidden>
+            <ol class="steps">
+              <li>
+                <strong>Mở New project</strong>
+                Sidebar trái → <strong>New project</strong> → chọn loại <strong>Web</strong>.
+              </li>
+              <li>
+                <strong>Nhập địa chỉ trang</strong>
+                Dán URL trang danh sách bạn muốn lấy, ví dụ <code>https://example.com/novels</code>
+                — không cần trang chủ.
+              </li>
+              <li>
+                <strong>Bấm Create project, rồi Run pipeline</strong>
+                Project Web không tự chạy: bấm nút <strong>Run pipeline</strong> ở góc trên bên phải.
+                Muốn nói rõ mục tiêu, gõ vào ô chat trước khi bấm.
+              </li>
+              <li>
+                <strong>Đợi 4 bước ở mục Pipeline</strong>
+                <span class="flow flow-inline" aria-label="Các bước phân tích web">
+                  <span>Probe</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Browser</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Fingerprint</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Crawl</span>
+                </span>
+              </li>
+              <li>
+                <strong>Nếu trang bắt xác minh (Cloudflare / CAPTCHA)</strong>
+                Agent sẽ dừng và nhắc bạn. Mở tab <strong>Browser</strong>, làm xác minh trên trang,
+                rồi bấm <strong>I've completed challenge</strong> — hoặc gõ <code>done</code> vào ô chat.
+                Không cần copy cookie hay đăng nhập ở đâu khác.
+              </li>
+            </ol>
+          </div>
+        </div>
+
         <div class="callout callout-info">
-          <strong>Không dán cookie thủ công</strong>
-          <p>Phiên trình duyệt do app giữ. Chỉ cần xử lý challenge trên tab Browser rồi báo <code>done</code>.</p>
+          <strong>Mỗi lúc chỉ chạy được một phân tích</strong>
+          <p>
+            Đang chạy project này thì project khác phải đợi — nhưng bạn vẫn chat được với agent
+            ở mọi project. Kết quả từng lần chạy nằm trong
+            <code>~/.ai-crawler/output/&lt;project&gt;/&lt;thời điểm&gt;/</code>, mở nhanh ở màn <strong>Output</strong>.
+          </p>
         </div>
 
-        <h2>3. Chat với Agent</h2>
+        <h2>2. Chat với agent</h2>
         <p>
-          Hỏi bằng tiếng Việt hoặc tiếng Anh bình thường. Agent ưu tiên câu trả lời dễ hiểu —
-          kết quả + việc cần làm tiếp — và giữ đúng tên endpoint, header, giá trị khi cần.
+          Hỏi bằng tiếng Việt hay tiếng Anh đều được. Agent trả lời theo kết quả và việc cần làm tiếp,
+          giữ nguyên tên API hoặc giá trị khi cần chính xác. Nhấn <kbd>Enter</kbd> để gửi,
+          <kbd>Shift</kbd>+<kbd>Enter</kbd> để xuống dòng.
         </p>
+
+        <p><strong>Ví dụ một câu hỏi thật</strong> — cứ viết như đang nhờ đồng nghiệp:</p>
+        <blockquote class="prompt prompt-hero">
+          “Đây là app sức khỏe, tính calory của món ăn. app đều có thuật toán riêng để tính điểm độ
+          “healthy” của sản phẩm (ví dụ 48/100), negative, positive,…. Có check được logic mà các app
+          tính điểm này không?”
+        </blockquote>
+
+        <figure class="shot shot-wide">
+          <a href="assets/chat-example.png" target="_blank" rel="noopener">
+            <img src="assets/chat-example.png" alt="Agent trả lời câu hỏi về cách app chấm điểm healthy">
+          </a>
+          <figcaption>
+            Agent trả lời kết luận trước, rồi dẫn đúng file và dòng code làm bằng chứng,
+            và gợi ý bước tiếp theo. Bấm vào ảnh để xem cỡ lớn.
+          </figcaption>
+        </figure>
+
+        <p>Vài mẹo dùng hàng ngày:</p>
         <ul>
-          <li>Yêu cầu format output: bảng Markdown, CSV, JSON schema, checklist, Mermaid diagram…</li>
-          <li>Dùng <strong>New chat</strong> / History / Compact / Clear trên thanh chat khi cần tách luồng.</li>
-          <li>Khi pipeline đang hỏi bạn (AskUser / chờ challenge), trả lời ngay trong ô chat.</li>
+          <li>Nói rõ định dạng bạn muốn: bảng, CSV, JSON, checklist, hay sơ đồ — agent xuất đúng dạng đó.</li>
+          <li>Đang phân tích mà agent hỏi lại, trả lời ngay trong ô chat rồi bấm <strong>Answer &amp; resume</strong> để chạy tiếp.</li>
+          <li>Hỏi sang chủ đề khác thì bấm <strong>New chat</strong>; xem lại thread cũ ở <strong>History</strong>.</li>
+          <li>Chat quá dài, agent chậm: bấm <strong>Compact</strong> để rút gọn ngữ cảnh, hoặc <strong>Clear</strong> để xoá hẳn nội dung chat hiện tại.</li>
         </ul>
 
-        <h2>4. Các tab — khi nào mở</h2>
+        <h2>3. Các tab — khi nào mở</h2>
         <dl class="tabs-guide">
           <dt>Agent</dt>
-          <dd>Hỏi đáp, theo dõi transcript pipeline, nhập mục tiêu crawl.</dd>
+          <dd>Nơi hỏi đáp và theo dõi tiến trình phân tích. Dùng nhiều nhất.</dd>
           <dt>Sources</dt>
-          <dd>Cây file đã giải mã / nguồn phân tích (khi cần kiểm tra chi tiết kỹ thuật).</dd>
+          <dd>Cây file đã giải mã, chỉ đọc — mở khi muốn tự kiểm chứng một chi tiết.</dd>
           <dt>APIs</dt>
-          <dd>Catalog endpoint đã tìm; chỉnh knobs crawl (max pages, skip detail).</dd>
+          <dd>Danh sách endpoint tìm được kèm header, tham số. Chỉnh <em>Max pages</em> / <em>Skip detail pages</em> trước khi crawl.</dd>
           <dt>Browser</dt>
-          <dd>Chỉ project Web — xem trang, vượt challenge, hỗ trợ crawl.</dd>
-          <dt>Output (shell)</dt>
-          <dd>Duyệt artifact các lần chạy: report, script crawl, response mẫu…</dd>
+          <dd>Chỉ project Web — xem trang thật, làm xác minh khi bị chặn.</dd>
+          <dt>Output</dt>
+          <dd>Toàn bộ file của các lần chạy: báo cáo, script, dữ liệu mẫu.</dd>
           <dt>Settings</dt>
-          <dd>AI provider (Claude CLI / API key), đường dẫn tool, diagnostics.</dd>
+          <dd>Tài khoản AI, đường dẫn công cụ, kiểm tra khi có lỗi.</dd>
         </dl>
 
-        <h2>5. Prompt mẫu theo vai trò</h2>
+        <h2>4. Prompt mẫu theo vai trò</h2>
         <div class="prompt-list">
           <blockquote class="prompt">
             <span class="who">PM / BA — IAP</span>
@@ -174,12 +254,12 @@
           </blockquote>
         </div>
 
-        <h2>6. Giới hạn quan trọng</h2>
+        <h2>5. Cần biết trước khi dùng</h2>
         <ul>
-          <li>Phân tích <strong>tĩnh / offline</strong> trên artifact trong workspace — không cần máy ảo, root, Frida, MITM.</li>
-          <li>Không yêu cầu bạn copy token / session từ điện thoại đang chạy app.</li>
-          <li>Một số bước (ví dụ secret trong file native) do agent tự xử lý trên máy; bạn chỉ cung cấp tài khoản đăng nhập nếu thật sự cần (email/password bạn đã có).</li>
-          <li>Chỉ chạy <strong>một pipeline</strong> tại một thời điểm; chat project khác vẫn dùng được.</li>
+          <li>Mọi phân tích chạy trên file đã tải về máy bạn — không cần điện thoại, máy ảo hay cài gì lên thiết bị.</li>
+          <li>Bạn sẽ không bao giờ bị yêu cầu copy token hay cookie từ điện thoại.</li>
+          <li>Phần kỹ thuật khó (ví dụ khoá bí mật nằm trong file của app) agent tự xử lý. Chỉ khi một bước bắt buộc phải có tài khoản, agent mới hỏi email/mật khẩu bạn đã có sẵn.</li>
+          <li>Mỗi lúc chỉ một project chạy phân tích; chat ở project khác vẫn bình thường.</li>
         </ul>
 
         <div class="cta-row">
@@ -188,11 +268,23 @@
         </div>
 
         <footer class="site-footer" id="lien-he">
-          <p>
-            <strong>Liên hệ hỗ trợ:</strong>
-            <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
-            · iKame Global
+          <p class="footer-lead">
+            <strong>Liên hệ hỗ trợ</strong> · iKame Global
           </p>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-role">Phụ trách sản phẩm</span>
+              <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+            </li>
+            <li>
+              <span class="contact-role">Supporter dự án</span>
+              <span class="contact-mails">
+                <a href="mailto:chungha@ikameglobal.com">chungha@ikameglobal.com</a>
+                ·
+                <a href="mailto:hoanm@ikameglobal.com">hoanm@ikameglobal.com</a>
+              </span>
+            </li>
+          </ul>
         </footer>
       </main>
     </div>

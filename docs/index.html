@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>iAtlas — Tài liệu sử dụng</title>
-  <meta name="description" content="iAtlas giúp PM, BA, Content và Dev phân tích app đối thủ qua giao diện chat.">
+  <meta name="description" content="iAtlas — app desktop (macOS &amp; Windows) giúp PM, BA, Content và Dev hiểu app, website đối thủ qua giao diện chat.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,10 +34,6 @@
           <a href="#lien-he">Liên hệ</a>
         </nav>
       </div>
-      <p class="sidebar-foot">
-        Hỗ trợ:<br>
-        <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
-      </p>
     </aside>
 
     <div class="main-wrap">
@@ -61,68 +57,98 @@
       </header>
 
       <main class="content" id="main">
-        <p class="eyebrow">Tài liệu người dùng</p>
-        <h1>iAtlas</h1>
-        <p class="lead">
-          App desktop giúp đội sản phẩm, nội dung và kỹ thuật phân tích app đối thủ
-          (và website) qua giao diện chat — không cần biết reverse engineering.
-          Trước đây PM thường phải subscribe app đối thủ để xem full flow,
-          giờ có thể kiểm tra qua static analysis code nhanh hơn và chủ động hơn.
+        <section class="hero">
+          <p class="eyebrow">Tài liệu người dùng · iKame Global</p>
+          <h1 class="hero-title">
+            Hiểu app đối thủ<br>
+            <span class="grad">chỉ bằng cách hỏi</span>
+          </h1>
+          <p class="hero-lead">
+            iAtlas là app desktop đọc hộ bạn bên trong app Android và website đối thủ,
+            rồi trả lời bằng tiếng thường ngay trong khung chat.
+            <strong>Không cần biết kỹ thuật, không cần điện thoại, không cần subscribe app đối thủ</strong>
+            chỉ để xem họ làm flow gì.
+          </p>
+
+          <ul class="hero-points">
+            <li><span class="dot" aria-hidden="true"></span>Hỏi tiếng Việt — trả lời theo kết quả và việc cần làm tiếp</li>
+            <li><span class="dot" aria-hidden="true"></span>Xuất bảng, CSV, JSON schema hay diagram theo format bạn yêu cầu</li>
+            <li><span class="dot" aria-hidden="true"></span>Chạy hoàn toàn trên máy bạn, phân tích tĩnh — không root, không máy ảo</li>
+          </ul>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" id="downloadBtnHero" href="setup.html">Tải &amp; cài đặt</a>
+            <a class="btn btn-ghost" href="usage.html">Xem hướng dẫn dùng</a>
+          </div>
+
+          <div class="platforms" aria-label="Nền tảng hỗ trợ">
+            <span class="platform-label">Cài đặt được trên</span>
+            <span class="platform" data-platform="mac">macOS <em>Apple Silicon &amp; Intel</em></span>
+            <span class="platform" data-platform="windows">Windows <em>x64</em></span>
+          </div>
+        </section>
+
+        <h2 id="danh-cho-ai">Dành cho ai?</h2>
+        <p class="section-lead">
+          Bốn nhóm dùng chung một app, nhưng hỏi những câu khác nhau — dưới đây là
+          công dụng cụ thể của từng bộ phận.
         </p>
 
-        <div class="cta-row">
-          <a class="btn btn-primary" id="downloadBtnHero" href="setup.html">Tải &amp; cài đặt</a>
-          <a class="btn btn-ghost" href="usage.html">Xem hướng dẫn dùng</a>
-        </div>
+        <div class="roles">
+          <article class="role role-pm">
+            <header class="role-head">
+              <span class="role-badge">PM</span>
+              <h3>Product Manager</h3>
+            </header>
+            <p class="role-sum">Xem đối thủ đang làm gì mà không phải chờ Dev “mổ” app.</p>
+            <ul class="role-uses">
+              <li><strong>Flow kiếm tiền:</strong> gói IAP, thời điểm hiện offer, màn paywall, điều kiện mở khoá.</li>
+              <li><strong>Quảng cáo (IAA):</strong> vị trí hiển thị, loại ad, khi nào chèn giữa luồng.</li>
+              <li><strong>Flow hoạt động của từng tính năng:</strong> tính năng của app đối thủ chạy thế nào, màn nào nối màn nào, điều kiện để mở.</li>
+              <li><strong>So sánh nhanh:</strong> đối chiếu tính năng đối thủ với backlog của mình trước khi quyết định làm.</li>
+            </ul>
+          </article>
 
-        <h2>Dành cho ai?</h2>
-        <div class="audience" aria-label="Đối tượng">
-          <span class="chip">PM</span>
-          <span class="chip">BA</span>
-          <span class="chip">Content</span>
-          <span class="chip">Dev Client / BE</span>
-        </div>
-        <p>
-          Bạn hỏi bằng tiếng thường; iAtlas trả lời theo kết quả và bước tiếp theo,
-          kèm đúng tên API, header hay đường dẫn khi cần.
-        </p>
+          <article class="role role-ba">
+            <header class="role-head">
+              <span class="role-badge">BA</span>
+              <h3>Business Analyst</h3>
+            </header>
+            <p class="role-sum">Biến một tính năng của đối thủ thành tài liệu dùng được ngay.</p>
+            <ul class="role-uses">
+              <li><strong>Mô tả luồng chi tiết:</strong> từng bước, điều kiện rẽ nhánh, trạng thái lỗi.</li>
+              <li><strong>Diagram:</strong> sequence / flow chart vẽ tự động theo format bạn chọn.</li>
+              <li><strong>Checklist &amp; acceptance criteria:</strong> xuất thẳng dạng danh sách để đưa vào ticket.</li>
+              <li><strong>Bằng chứng đi kèm:</strong> mỗi kết luận có nguồn trong file đã phân tích, không đoán mò.</li>
+            </ul>
+          </article>
 
-        <h2>Công dụng</h2>
-        <div class="use-grid">
-          <article class="use-item">
-            <h3>Phân tích flow đối thủ</h3>
-            <p>
-              PM/BA chủ động xem luồng app: IAP, IAA, tracking, rating, onboarding
-              và các kịch bản sản phẩm khác — không cần nhờ Dev “mổ” app.
-            </p>
+          <article class="role role-content">
+            <header class="role-head">
+              <span class="role-badge">CT</span>
+              <h3>Content</h3>
+            </header>
+            <p class="role-sum">Lấy dữ liệu nội dung của đối thủ để tham khảo cấu trúc và cách viết.</p>
+            <ul class="role-uses">
+              <li><strong>Crawl nội dung:</strong> danh sách bài / sản phẩm / mục từ app hoặc website đối thủ.</li>
+              <li><strong>Taxonomy:</strong> họ chia chuyên mục, tag, bộ lọc như thế nào.</li>
+              <li><strong>Cấu trúc bài viết:</strong> các trường tiêu đề, mô tả, ảnh, độ dài thường dùng.</li>
+              <li><strong>Xuất file:</strong> bảng hoặc CSV mở được bằng Excel / Google Sheets.</li>
+            </ul>
           </article>
-          <article class="use-item">
-            <h3>Luồng tính năng &amp; diagram</h3>
-            <p>
-              Phân tích chi tiết một tính năng, rồi nhờ agent mô tả hoặc vẽ diagram
-              hoạt động (sequence, flow) theo format bạn muốn.
-            </p>
-          </article>
-          <article class="use-item">
-            <h3>Spy / crawl nội dung</h3>
-            <p>
-              Đội Content lấy nội dung từ app hoặc web đối thủ để tham khảo cấu trúc,
-              taxonomy, copy — qua pipeline crawl và hỏi agent.
-            </p>
-          </article>
-          <article class="use-item">
-            <h3>API graph &amp; schema cho Dev</h3>
-            <p>
-              Dev Client/BE xem danh sách API, request/response, quan hệ endpoint,
-              và draft cấu trúc database từ dữ liệu đã phân tích.
-            </p>
-          </article>
-          <article class="use-item">
-            <h3>Chat — output đúng format</h3>
-            <p>
-              Hỏi đáp trong app dạng chat. Yêu cầu xuất bảng Markdown, CSV, JSON schema,
-              checklist BA, hay bất kỳ cấu trúc nào bạn chỉ định.
-            </p>
+
+          <article class="role role-dev">
+            <header class="role-head">
+              <span class="role-badge">DEV</span>
+              <h3>Dev Client / Backend</h3>
+            </header>
+            <p class="role-sum">Có sẵn danh sách API và schema thay vì tự dò từng màn hình.</p>
+            <ul class="role-uses">
+              <li><strong>Danh mục API:</strong> method, đường dẫn, header bắt buộc, tham số của từng endpoint.</li>
+              <li><strong>Schema request/response:</strong> tên field, kiểu dữ liệu, trường bắt buộc.</li>
+              <li><strong>API graph:</strong> endpoint nào gọi trước, endpoint nào phụ thuộc kết quả trước đó.</li>
+              <li><strong>Draft database:</strong> gợi ý bảng và cột tương ứng với dữ liệu đã thu được.</li>
+            </ul>
           </article>
         </div>
 
@@ -153,9 +179,28 @@
           </p>
         </div>
 
-        <h2>Nên bổ sung gì vào docs?</h2>
-        <p>Các mục đề xuất cho lần cập nhật sau — giúp onboard nhanh hơn:</p>
-        <ol class="roadmap">
+        <h2>Bắt đầu trong 3 bước</h2>
+        <ol class="steps">
+          <li>
+            <strong>Cài app</strong>
+            Tải bản cho máy bạn (macOS hoặc Windows) và đăng nhập Claude — xem
+            <a href="setup.html">trang cài đặt</a>.
+          </li>
+          <li>
+            <strong>Tạo project</strong>
+            Nhập package name của app Android, hoặc địa chỉ website, rồi bấm chạy.
+          </li>
+          <li>
+            <strong>Hỏi agent</strong>
+            Gõ câu hỏi bằng tiếng thường và nói rõ bạn muốn kết quả ở dạng nào —
+            xem <a href="usage.html">prompt mẫu theo vai trò</a>.
+          </li>
+        </ol>
+
+        <details class="doc-roadmap">
+          <summary>Nội dung sẽ bổ sung vào tài liệu</summary>
+          <p>Các mục đề xuất cho lần cập nhật sau — giúp onboard nhanh hơn:</p>
+          <ol class="roadmap">
           <li>Thư viện prompt mẫu theo kịch bản (IAP, IAA, rating, tracking, onboarding).</li>
           <li>Glossary thuật ngữ bằng tiếng thường (package name, API graph, pipeline…).</li>
           <li>Ảnh chụp màn hình Setup / Home / APIs / Browser / Output.</li>
@@ -166,14 +211,27 @@
           <li>Bảng so sánh khi chọn project APK vs Web.</li>
           <li>Bản tiếng Anh nếu onboard contractor nước ngoài.</li>
           <li>Link tải chính thức + checksum SHA256 theo từng OS.</li>
-        </ol>
+          </ol>
+        </details>
 
         <footer class="site-footer" id="lien-he">
-          <p>
-            <strong>Liên hệ hỗ trợ:</strong>
-            <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
-            · iKame Global
+          <p class="footer-lead">
+            <strong>Liên hệ hỗ trợ</strong> · iKame Global
           </p>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-role">Phụ trách sản phẩm</span>
+              <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+            </li>
+            <li>
+              <span class="contact-role">Supporter dự án</span>
+              <span class="contact-mails">
+                <a href="mailto:chungha@ikameglobal.com">chungha@ikameglobal.com</a>
+                ·
+                <a href="mailto:hoanm@ikameglobal.com">hoanm@ikameglobal.com</a>
+              </span>
+            </li>
+          </ul>
         </footer>
       </main>
     </div>
