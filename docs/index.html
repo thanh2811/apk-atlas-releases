@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iAtlas — Tài liệu sử dụng</title>
+  <meta name="description" content="iAtlas giúp PM, BA, Content và Dev phân tích app đối thủ qua giao diện chat.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" width="36" height="36" alt="">
+        <span class="brand-text">
+          <span class="brand-name">iAtlas</span>
+          <span class="brand-sub">iKame Global</span>
+        </span>
+      </a>
+      <div>
+        <p class="nav-label">Tài liệu</p>
+        <nav class="nav" aria-label="Chính">
+          <a href="index.html" aria-current="page">Giới thiệu</a>
+          <a href="setup.html">Cài đặt</a>
+          <a href="usage.html">Hướng dẫn</a>
+          <a href="faq.html">FAQ</a>
+          <a href="#lien-he">Liên hệ</a>
+        </nav>
+      </div>
+      <p class="sidebar-foot">
+        Hỗ trợ:<br>
+        <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+      </p>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sidebar">Menu</button>
+          <a class="brand topbar-brand" href="index.html">
+            <img src="assets/logo.svg" width="28" height="28" alt="">
+            <span class="brand-name">iAtlas</span>
+          </a>
+        </div>
+        <div class="topbar-right">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.0/iAtlas-1.0.0-macos-arm64.dmg">
+            <span class="btn-download-icon" aria-hidden="true">↓</span>
+            <span class="btn-download-text">
+              <span class="btn-download-title">Tải iAtlas</span>
+              <span class="btn-download-os" id="downloadOsLabel">Đang nhận diện OS…</span>
+            </span>
+          </a>
+        </div>
+      </header>
+
+      <main class="content" id="main">
+        <p class="eyebrow">Tài liệu người dùng</p>
+        <h1>iAtlas</h1>
+        <p class="lead">
+          App desktop giúp đội sản phẩm, nội dung và kỹ thuật phân tích app đối thủ
+          (và website) qua giao diện chat — không cần biết reverse engineering.
+          Trước đây PM thường phải subscribe app đối thủ để xem full flow,
+          giờ có thể kiểm tra qua static analysis code nhanh hơn và chủ động hơn.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" id="downloadBtnHero" href="setup.html">Tải &amp; cài đặt</a>
+          <a class="btn btn-ghost" href="usage.html">Xem hướng dẫn dùng</a>
+        </div>
+
+        <h2>Dành cho ai?</h2>
+        <div class="audience" aria-label="Đối tượng">
+          <span class="chip">PM</span>
+          <span class="chip">BA</span>
+          <span class="chip">Content</span>
+          <span class="chip">Dev Client / BE</span>
+        </div>
+        <p>
+          Bạn hỏi bằng tiếng thường; iAtlas trả lời theo kết quả và bước tiếp theo,
+          kèm đúng tên API, header hay đường dẫn khi cần.
+        </p>
+
+        <h2>Công dụng</h2>
+        <div class="use-grid">
+          <article class="use-item">
+            <h3>Phân tích flow đối thủ</h3>
+            <p>
+              PM/BA chủ động xem luồng app: IAP, IAA, tracking, rating, onboarding
+              và các kịch bản sản phẩm khác — không cần nhờ Dev “mổ” app.
+            </p>
+          </article>
+          <article class="use-item">
+            <h3>Luồng tính năng &amp; diagram</h3>
+            <p>
+              Phân tích chi tiết một tính năng, rồi nhờ agent mô tả hoặc vẽ diagram
+              hoạt động (sequence, flow) theo format bạn muốn.
+            </p>
+          </article>
+          <article class="use-item">
+            <h3>Spy / crawl nội dung</h3>
+            <p>
+              Đội Content lấy nội dung từ app hoặc web đối thủ để tham khảo cấu trúc,
+              taxonomy, copy — qua pipeline crawl và hỏi agent.
+            </p>
+          </article>
+          <article class="use-item">
+            <h3>API graph &amp; schema cho Dev</h3>
+            <p>
+              Dev Client/BE xem danh sách API, request/response, quan hệ endpoint,
+              và draft cấu trúc database từ dữ liệu đã phân tích.
+            </p>
+          </article>
+          <article class="use-item">
+            <h3>Chat — output đúng format</h3>
+            <p>
+              Hỏi đáp trong app dạng chat. Yêu cầu xuất bảng Markdown, CSV, JSON schema,
+              checklist BA, hay bất kỳ cấu trúc nào bạn chỉ định.
+            </p>
+          </article>
+        </div>
+
+        <h2>Hai loại dự án</h2>
+        <div class="modes">
+          <div class="mode">
+            <h3>APK</h3>
+            <p>
+              Phân tích app Android theo <em>package name</em>
+              (ví dụ <code>com.example.app</code>). App tự tải APK (nếu bật),
+              phân tích tĩnh và chuẩn bị crawl nội dung / API.
+            </p>
+          </div>
+          <div class="mode">
+            <h3>Web</h3>
+            <p>
+              Phân tích website từ URL gốc. Dùng trình duyệt tích hợp;
+              nếu gặp Cloudflare/CAPTCHA bạn hoàn thành trên tab Browser rồi trả lời <code>done</code>.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout callout-info">
+          <strong>Không cần thiết bị thật hay máy ảo</strong>
+          <p>
+            Phân tích app dựa trên file APK và công cụ tĩnh trên máy bạn.
+            Không yêu cầu root, Frida, hay copy token từ điện thoại.
+          </p>
+        </div>
+
+        <h2>Nên bổ sung gì vào docs?</h2>
+        <p>Các mục đề xuất cho lần cập nhật sau — giúp onboard nhanh hơn:</p>
+        <ol class="roadmap">
+          <li>Thư viện prompt mẫu theo kịch bản (IAP, IAA, rating, tracking, onboarding).</li>
+          <li>Glossary thuật ngữ bằng tiếng thường (package name, API graph, pipeline…).</li>
+          <li>Ảnh chụp màn hình Setup / Home / APIs / Browser / Output.</li>
+          <li>Video ngắn 3–5 phút: từ cài app đến crawl APK đầu tiên.</li>
+          <li>Changelog / phiên bản gắn với file cài đặt.</li>
+          <li>Trang bảo mật &amp; tuân thủ nội bộ iKame (phạm vi dùng, bản quyền nội dung).</li>
+          <li>Troubleshooting nâng cao (log trong <code>~/.ai-crawler</code>, Settings).</li>
+          <li>Bảng so sánh khi chọn project APK vs Web.</li>
+          <li>Bản tiếng Anh nếu onboard contractor nước ngoài.</li>
+          <li>Link tải chính thức + checksum SHA256 theo từng OS.</li>
+        </ol>
+
+        <footer class="site-footer" id="lien-he">
+          <p>
+            <strong>Liên hệ hỗ trợ:</strong>
+            <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+            · iKame Global
+          </p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

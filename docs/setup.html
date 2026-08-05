@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cài đặt — iAtlas</title>
+  <meta name="description" content="Tải iAtlas, cài Claude Code / Claude Pro, và setup lần đầu.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" width="36" height="36" alt="">
+        <span class="brand-text">
+          <span class="brand-name">iAtlas</span>
+          <span class="brand-sub">iKame Global</span>
+        </span>
+      </a>
+      <div>
+        <p class="nav-label">Tài liệu</p>
+        <nav class="nav" aria-label="Chính">
+          <a href="index.html">Giới thiệu</a>
+          <a href="setup.html" aria-current="page">Cài đặt</a>
+          <a href="usage.html">Hướng dẫn</a>
+          <a href="faq.html">FAQ</a>
+          <a href="#lien-he">Liên hệ</a>
+        </nav>
+      </div>
+      <p class="sidebar-foot">
+        Hỗ trợ:<br>
+        <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+      </p>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sidebar">Menu</button>
+          <a class="brand topbar-brand" href="index.html">
+            <img src="assets/logo.svg" width="28" height="28" alt="">
+            <span class="brand-name">iAtlas</span>
+          </a>
+        </div>
+        <div class="topbar-right">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.0/iAtlas-1.0.0-macos-arm64.dmg">
+            <span class="btn-download-icon" aria-hidden="true">↓</span>
+            <span class="btn-download-text">
+              <span class="btn-download-title">Tải iAtlas</span>
+              <span class="btn-download-os" id="downloadOsLabel">Đang nhận diện OS…</span>
+            </span>
+          </a>
+        </div>
+      </header>
+
+      <main class="content" id="main">
+        <p class="eyebrow">Bắt đầu</p>
+        <h1>Tải và cài đặt iAtlas</h1>
+        <p class="lead">
+          Chuẩn bị tài khoản Claude, cài app, để iAtlas tự tải công cụ phân tích lần đầu.
+          Bạn không cần cài JDK, Homebrew hay Python hệ thống.
+          Nút <strong>Tải iAtlas</strong> góc trên bên phải đã chọn bản phù hợp máy bạn.
+        </p>
+
+        <h2>Yêu cầu</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Hạng mục</th>
+                <th>Chi tiết</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Máy</td>
+                <td>macOS (Apple Silicon hoặc Intel) hoặc Windows x64. Chưa hỗ trợ Linux.</td>
+              </tr>
+              <tr>
+                <td>Tài khoản AI</td>
+                <td>
+                  <strong>Claude Pro hoặc Max</strong> (khuyến nghị) để dùng Claude Code CLI;
+                  hoặc Anthropic API key trong Settings. Có thể cấu hình thêm OpenAI / Gemini sau.
+                </td>
+              </tr>
+              <tr>
+                <td>Claude Code</td>
+                <td>
+                  Cài
+                  <a href="https://docs.anthropic.com/en/docs/claude-code" rel="noopener" target="_blank">Claude Code</a>
+                  trên máy, mở terminal chạy <code>claude</code> rồi <code>/login</code> với tài khoản Pro/Max.
+                </td>
+              </tr>
+              <tr>
+                <td>Mạng</td>
+                <td>
+                  Cần mạng lần đầu (tải Python ~30&nbsp;MB, Playwright, Chromium ~300&nbsp;MB, hermes-dec),
+                  khi gọi AI, và khi tải APK / crawl web.
+                </td>
+              </tr>
+              <tr>
+                <td>Không cần</td>
+                <td>JDK, Homebrew, Python hệ thống, apktool, jadx — app tự kèm hoặc tự tải.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Hướng dẫn theo hệ điều hành</h2>
+        <p>Tab mặc định theo máy bạn đang dùng. Đổi tab nếu cần cài trên máy khác.</p>
+
+        <div class="os-tabs" id="osTabs">
+          <div class="os-tablist" role="tablist" aria-label="Hệ điều hành">
+            <button type="button" class="os-tab is-active" role="tab" data-os-tab="macos-arm64" aria-selected="true" aria-controls="panel-macos-arm64" id="tab-macos-arm64">macOS Apple Silicon</button>
+            <button type="button" class="os-tab" role="tab" data-os-tab="macos-x64" aria-selected="false" aria-controls="panel-macos-x64" id="tab-macos-x64" tabindex="-1">macOS Intel</button>
+            <button type="button" class="os-tab" role="tab" data-os-tab="windows-x64" aria-selected="false" aria-controls="panel-windows-x64" id="tab-windows-x64" tabindex="-1">Windows</button>
+          </div>
+
+          <div class="os-panel is-active" role="tabpanel" data-os-panel="macos-arm64" id="panel-macos-arm64" aria-labelledby="tab-macos-arm64">
+            <ol class="steps">
+              <li>
+                <strong>Tải bộ cài (DMG)</strong>
+                Bấm <strong>Tải iAtlas</strong> góc trên phải — trình duyệt tải thẳng
+                <code>iAtlas-1.0.0-macos-arm64.dmg</code> (bản
+                <a href="https://github.com/thanh2811/apk-atlas-releases/releases/tag/v1.0.0" rel="noopener" target="_blank">v1.0.0</a>).
+                Các bản khác xem
+                <a href="https://github.com/thanh2811/apk-atlas-releases/releases" rel="noopener" target="_blank">Releases</a>.
+              </li>
+              <li>
+                <strong>Cài app</strong>
+                Mở file DMG → kéo <strong>iAtlas</strong> vào thư mục <strong>Applications</strong>.
+                Nếu Gatekeeper chặn (app chưa codesign):
+                <em>System Settings → Privacy &amp; Security → Open Anyway</em>, rồi mở lại app.
+              </li>
+              <li>
+                <strong>Cài Claude Code và đăng nhập</strong>
+                Làm theo hướng dẫn Anthropic để cài CLI.
+                Trong Terminal: <code>claude</code> → <code>/login</code> với tài khoản Pro/Max.
+                Kiểm tra lệnh có trong PATH (thường <code>~/.local/bin/claude</code> hoặc <code>/opt/homebrew/bin/claude</code>).
+                Không dùng CLI: chuẩn bị Anthropic API key để dán trong Settings.
+              </li>
+              <li>
+                <strong>Mở iAtlas — setup lần đầu</strong>
+                Màn <em>Setting up iAtlas</em> tự kiểm tra/tải: toolchain, Python, Playwright, Chromium, hermes-dec.
+                Có thể <em>Retry</em> hoặc <em>Continue anyway</em> nếu một phần lỗi.
+              </li>
+              <li>
+                <strong>Settings (AI) &amp; dữ liệu</strong>
+                Vào <strong>Settings</strong> xác nhận Claude CLI hoặc API key.
+                Workspace: <code>~/.ai-crawler/</code> (tools, work, output, config).
+              </li>
+            </ol>
+            <div class="callout callout-info">
+              <strong>Quyền trên macOS</strong>
+              <p>
+                Cần mạng và ghi file vào <code>~/.ai-crawler/</code>. Chromium có thể hỏi lần đầu.
+                Không cần Accessibility / Full Disk Access.
+              </p>
+            </div>
+          </div>
+
+          <div class="os-panel" role="tabpanel" data-os-panel="macos-x64" id="panel-macos-x64" aria-labelledby="tab-macos-x64" hidden>
+            <ol class="steps">
+              <li>
+                <strong>Tải bộ cài (DMG Intel)</strong>
+                Dùng nút tải góc trên →
+                <a href="https://github.com/thanh2811/apk-atlas-releases/releases" rel="noopener" target="_blank">Releases</a>,
+                chọn version rồi tải <code>iAtlas-*-macos-x64.dmg</code> khi có bản Intel.
+              </li>
+              <li>
+                <strong>Cài app</strong>
+                Mở DMG → kéo iAtlas vào Applications.
+                Nếu bị chặn: <em>System Settings → Privacy &amp; Security → Open Anyway</em>.
+              </li>
+              <li>
+                <strong>Cài Claude Code và đăng nhập</strong>
+                Cài Claude Code → Terminal: <code>claude</code> → <code>/login</code> (Pro/Max).
+                PATH thường: <code>~/.local/bin/claude</code> hoặc <code>/usr/local/bin/claude</code>.
+                Hoặc dùng Anthropic API key trong Settings.
+              </li>
+              <li>
+                <strong>Mở iAtlas — setup lần đầu</strong>
+                Đợi màn setup tải toolchain / Python / Playwright / Chromium / hermes-dec.
+                Có thể bỏ qua phần lỗi và vào app.
+              </li>
+              <li>
+                <strong>Settings (AI) &amp; dữ liệu</strong>
+                Kiểm tra Claude CLI hoặc API key. Dữ liệu tại <code>~/.ai-crawler/</code>.
+              </li>
+            </ol>
+            <div class="callout callout-info">
+              <strong>Quyền trên macOS</strong>
+              <p>Giống Apple Silicon: mạng, ghi <code>~/.ai-crawler/</code>, có thể hỏi Chromium lần đầu.</p>
+            </div>
+          </div>
+
+          <div class="os-panel" role="tabpanel" data-os-panel="windows-x64" id="panel-windows-x64" aria-labelledby="tab-windows-x64" hidden>
+            <ol class="steps">
+              <li>
+                <strong>Tải bộ cài (MSI)</strong>
+                Bấm <strong>Tải iAtlas</strong> →
+                <a href="https://github.com/thanh2811/apk-atlas-releases/releases" rel="noopener" target="_blank">Releases</a>,
+                chọn version rồi tải <code>iAtlas-*-windows-x64.msi</code> khi có bản Windows.
+              </li>
+              <li>
+                <strong>Cài app</strong>
+                Chạy file MSI, làm theo wizard. Nếu SmartScreen cảnh báo: <em>More info → Run anyway</em> (bản nội bộ chưa ký số có thể gặp).
+              </li>
+              <li>
+                <strong>Cài Claude Code và đăng nhập</strong>
+                Cài Claude Code theo docs Anthropic (Windows).
+                Mở PowerShell hoặc Command Prompt: <code>claude</code> → <code>/login</code> với Pro/Max.
+                Đảm bảo CLI có trong PATH. Hoặc dùng Anthropic API key trong Settings của iAtlas.
+              </li>
+              <li>
+                <strong>Mở iAtlas — setup lần đầu</strong>
+                Màn setup tự tải Python, Playwright, Chromium, hermes-dec (và toolchain nếu cần).
+                Có thể <em>Continue anyway</em> nếu một phần fail.
+              </li>
+              <li>
+                <strong>Settings (AI) &amp; dữ liệu</strong>
+                Vào Settings xác nhận AI.
+                Workspace thường tại <code>%USERPROFILE%\.ai-crawler\</code>
+                (tools, work, output, config).
+              </li>
+            </ol>
+            <div class="callout callout-info">
+              <strong>Lưu ý Windows</strong>
+              <p>
+                Cần mạng lần đầu và khi gọi AI / tải APK.
+                Firewall có thể hỏi khi Chromium hoặc app kết nối mạng — cho phép nếu dùng crawl web.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2>Sau khi vào app (mọi OS)</h2>
+        <ul>
+          <li>Màn setup xong → Home (Agent). Tạo project APK hoặc Web rồi chạy pipeline.</li>
+          <li>Chi tiết thao tác hàng ngày: xem <a href="usage.html">Hướng dẫn sử dụng</a>.</li>
+        </ul>
+
+        <div class="callout callout-warn">
+          <strong>Lưu ý Claude “permissions”</strong>
+          <p>
+            Trong Settings có tùy chọn permission mode của Claude Code (agent chạy công cụ trong workspace).
+            Đây <em>không</em> phải quyền hệ thống macOS/Windows — chỉ ảnh hưởng phê duyệt thao tác trong phiên agent.
+          </p>
+        </div>
+
+        <h2>Gợi ý sau khi cài xong</h2>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="usage.html">Tiếp: hướng dẫn sử dụng</a>
+          <a class="btn btn-ghost" href="faq.html">Gặp lỗi? Xem FAQ</a>
+        </div>
+
+        <footer class="site-footer" id="lien-he">
+          <p>
+            <strong>Liên hệ hỗ trợ:</strong>
+            <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+            · iKame Global
+          </p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

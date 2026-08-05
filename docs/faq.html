@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ — iAtlas</title>
+  <meta name="description" content="Câu hỏi thường gặp và xử lý lỗi khi dùng iAtlas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" width="36" height="36" alt="">
+        <span class="brand-text">
+          <span class="brand-name">iAtlas</span>
+          <span class="brand-sub">iKame Global</span>
+        </span>
+      </a>
+      <div>
+        <p class="nav-label">Tài liệu</p>
+        <nav class="nav" aria-label="Chính">
+          <a href="index.html">Giới thiệu</a>
+          <a href="setup.html">Cài đặt</a>
+          <a href="usage.html">Hướng dẫn</a>
+          <a href="faq.html" aria-current="page">FAQ</a>
+          <a href="#lien-he">Liên hệ</a>
+        </nav>
+      </div>
+      <p class="sidebar-foot">
+        Hỗ trợ:<br>
+        <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+      </p>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sidebar">Menu</button>
+          <a class="brand topbar-brand" href="index.html">
+            <img src="assets/logo.svg" width="28" height="28" alt="">
+            <span class="brand-name">iAtlas</span>
+          </a>
+        </div>
+        <div class="topbar-right">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.0/iAtlas-1.0.0-macos-arm64.dmg">
+            <span class="btn-download-icon" aria-hidden="true">↓</span>
+            <span class="btn-download-text">
+              <span class="btn-download-title">Tải iAtlas</span>
+              <span class="btn-download-os" id="downloadOsLabel">Đang nhận diện OS…</span>
+            </span>
+          </a>
+        </div>
+      </header>
+
+      <main class="content" id="main">
+        <p class="eyebrow">Hỗ trợ</p>
+        <h1>Câu hỏi thường gặp</h1>
+        <p class="lead">
+          Lỗi AI, setup chậm, tải APK thất bại, và chỗ lưu dữ liệu.
+          Không hết lỗi? Gửi mail hỗ trợ bên dưới.
+        </p>
+
+        <h2>Agent không trả lời / lỗi Claude</h2>
+        <ul>
+          <li>Chạy <code>claude</code> trong terminal → <code>/login</code> với tài khoản <strong>Pro hoặc Max</strong>.</li>
+          <li>Kiểm tra lệnh <code>claude</code> có trong PATH (hoặc đường dẫn Settings nếu app hỗ trợ override).</li>
+          <li>Vào <strong>Settings</strong>: bật Claude CLI đúng, hoặc tắt CLI và dán Anthropic API key.</li>
+          <li>Kiểm tra mạng / proxy nội bộ có chặn CLI hoặc API không.</li>
+        </ul>
+
+        <h2>Setup tải Chromium chậm hoặc fail</h2>
+        <ul>
+          <li>Chromium ~300&nbsp;MB — đợi hết hoặc bấm <strong>Retry</strong>.</li>
+          <li>Có thể <strong>Continue anyway</strong>: app vẫn mở; crawl <strong>Web</strong> và Browser có thể chưa dùng được cho đến khi Chromium sẵn sàng.</li>
+          <li>Project <strong>APK</strong> thường vẫn chạy nếu toolchain + Python ổn.</li>
+        </ul>
+
+        <h2>Không tải được APK</h2>
+        <ul>
+          <li>Kiểm tra đúng <em>package name</em> (dạng <code>com.xxx.yyy</code>) và kết nối mạng.</li>
+          <li>Nguồn tải phụ thuộc dịch vụ bên thứ ba — có thể tạm lỗi; thử lại sau hoặc hỏi agent bước tiếp.</li>
+          <li>Nếu đã có file APK trong workspace từ lần trước, pipeline có thể dùng bản đã cache.</li>
+        </ul>
+
+        <h2>Cloudflare / CAPTCHA trên project Web</h2>
+        <ol>
+          <li>Mở tab <strong>Browser</strong>.</li>
+          <li>Hoàn thành challenge trên trang.</li>
+          <li>Trong Agent chat, trả lời <code>done</code>.</li>
+        </ol>
+        <p>Không cần copy cookie thủ công.</p>
+
+        <h2>Dữ liệu nằm ở đâu?</h2>
+        <p>Thư mục gốc: <code>~/.ai-crawler/</code></p>
+        <ul>
+          <li><code>tools/</code> — công cụ đã tải</li>
+          <li><code>work/</code> — từng project (smali, chat, artifact tạm)</li>
+          <li><code>output/</code> — kết quả crawl / report / script</li>
+          <li><code>config/</code> — settings (ví dụ <code>settings.properties</code>)</li>
+        </ul>
+
+        <h2>Xóa / đổi tên project</h2>
+        <p>
+          Trên sidebar Context: dùng dialog rename / delete của project.
+          Xóa project sẽ dọn dữ liệu liên quan trong workspace — cân nhắc trước khi xác nhận.
+        </p>
+
+        <h2>Đổi model hoặc nhà cung cấp AI</h2>
+        <p>
+          Vào <strong>Settings</strong>: Claude CLI (mặc định) hoặc API key Anthropic;
+          có thể cấu hình thêm OpenAI / Gemini nếu team cho phép. Đổi model / effort tại đây rồi thử lại chat.
+        </p>
+
+        <h2>macOS báo không mở được app</h2>
+        <p>
+          App có thể chưa codesign. Vào
+          <em>System Settings → Privacy &amp; Security</em>, chọn <strong>Open Anyway</strong>, rồi mở lại iAtlas.
+        </p>
+
+        <h2>APK vs Web — chọn cái nào?</h2>
+        <ul>
+          <li><strong>APK</strong> — đối thủ là app Android; cần flow in-app, API backend của app, nội dung trong app.</li>
+          <li><strong>Web</strong> — đối thủ / nguồn là website hoặc web app; cần crawl trang và traffic trình duyệt.</li>
+        </ul>
+
+        <h2>Đề xuất nội dung docs sắp tới</h2>
+        <p>Các mục nên bổ sung (cũng liệt kê trên trang Giới thiệu):</p>
+        <ol class="roadmap">
+          <li>Thư viện prompt mẫu theo kịch bản sản phẩm.</li>
+          <li>Glossary thuật ngữ tiếng thường.</li>
+          <li>Screenshot &amp; video onboard.</li>
+          <li>Changelog + checksum bản cài.</li>
+          <li>Trang bảo mật / tuân thủ nội bộ.</li>
+          <li>Troubleshooting log nâng cao.</li>
+          <li>Bản tiếng Anh.</li>
+        </ol>
+
+        <footer class="site-footer" id="lien-he">
+          <p>
+            <strong>Liên hệ hỗ trợ:</strong>
+            <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+            · iKame Global
+          </p>
+          <p>
+            Khi gửi mail, ghi giúp: OS (macOS/Windows), bước đang làm (setup / APK / Web / chat),
+            và nội dung lỗi nếu có — xử lý nhanh hơn.
+          </p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

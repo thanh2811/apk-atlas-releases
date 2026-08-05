@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hướng dẫn sử dụng — iAtlas</title>
+  <meta name="description" content="Tạo project APK/Web, chạy pipeline, chat với agent và xem output.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" width="36" height="36" alt="">
+        <span class="brand-text">
+          <span class="brand-name">iAtlas</span>
+          <span class="brand-sub">iKame Global</span>
+        </span>
+      </a>
+      <div>
+        <p class="nav-label">Tài liệu</p>
+        <nav class="nav" aria-label="Chính">
+          <a href="index.html">Giới thiệu</a>
+          <a href="setup.html">Cài đặt</a>
+          <a href="usage.html" aria-current="page">Hướng dẫn</a>
+          <a href="faq.html">FAQ</a>
+          <a href="#lien-he">Liên hệ</a>
+        </nav>
+      </div>
+      <p class="sidebar-foot">
+        Hỗ trợ:<br>
+        <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+      </p>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sidebar">Menu</button>
+          <a class="brand topbar-brand" href="index.html">
+            <img src="assets/logo.svg" width="28" height="28" alt="">
+            <span class="brand-name">iAtlas</span>
+          </a>
+        </div>
+        <div class="topbar-right">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.0/iAtlas-1.0.0-macos-arm64.dmg">
+            <span class="btn-download-icon" aria-hidden="true">↓</span>
+            <span class="btn-download-text">
+              <span class="btn-download-title">Tải iAtlas</span>
+              <span class="btn-download-os" id="downloadOsLabel">Đang nhận diện OS…</span>
+            </span>
+          </a>
+        </div>
+      </header>
+
+      <main class="content" id="main">
+        <p class="eyebrow">Vận hành hàng ngày</p>
+        <h1>Hướng dẫn sử dụng</h1>
+        <p class="lead">
+          Tạo project, chạy phân tích (pipeline), rồi hỏi agent bằng tiếng thường.
+          Kết quả nằm ở tab APIs / Output và trong thư mục workspace.
+        </p>
+
+        <h2>Luồng tổng quan</h2>
+        <div class="flow" aria-label="Luồng sử dụng">
+          <span>Mở iAtlas</span>
+          <span class="arrow" aria-hidden="true">→</span>
+          <span>Setup lần đầu</span>
+          <span class="arrow" aria-hidden="true">→</span>
+          <span>Home (Agent)</span>
+          <span class="arrow" aria-hidden="true">→</span>
+          <span>Tạo project APK / Web</span>
+          <span class="arrow" aria-hidden="true">→</span>
+          <span>Chạy pipeline</span>
+          <span class="arrow" aria-hidden="true">→</span>
+          <span>Chat + xem Output / APIs</span>
+        </div>
+
+        <p>
+          Thanh điều hướng chính: <strong>Agent (Home)</strong> · <strong>Output</strong> · <strong>Settings</strong>.
+          Trong một project: tab <strong>Agent</strong> · <strong>Sources</strong> · <strong>APIs</strong> · <strong>Browser</strong>.
+        </p>
+
+        <h2>1. Tạo project APK</h2>
+        <ol>
+          <li>Vào <strong>Agent</strong> → sidebar trái → <strong>New project</strong>.</li>
+          <li>Chọn chế độ <strong>APK</strong>.</li>
+          <li>Nhập <em>package name</em> Android (ví dụ <code>com.example.app</code>), tên hiển thị tùy chọn.</li>
+          <li>Bật <strong>Download now</strong> nếu muốn tải APK ngay (mặc định thường bật).</li>
+          <li>Tạo project → theo dõi tiến trình tải / khởi tạo trên sidebar.</li>
+          <li>Khi sẵn sàng, nhấn <strong>Run pipeline</strong> (có thể ghi mục tiêu crawl trong ô chat trước khi chạy).</li>
+        </ol>
+        <p>Các bước pipeline APK (sidebar): Download → Decompile → Detect framework → Native scan → Source graph → Crawl plan → Replay.</p>
+        <p>Kết quả chạy nằm dưới <code>~/.ai-crawler/output/&lt;project&gt;/&lt;timestamp&gt;/</code> và mở được từ màn <strong>Output</strong>.</p>
+
+        <h2>2. Tạo project Web</h2>
+        <ol>
+          <li><strong>New project</strong> → chọn <strong>Web</strong>.</li>
+          <li>Nhập URL gốc (http/https), tên hiển thị tùy chọn.</li>
+          <li><strong>Run pipeline</strong>. Các bước: Browser → Probe → Fingerprint → Crawl.</li>
+          <li>
+            Nếu gặp Cloudflare / CAPTCHA: mở tab <strong>Browser</strong>, hoàn thành challenge trên trang,
+            rồi trong chat Agent trả lời <code>done</code> để tiếp tục.
+          </li>
+        </ol>
+        <div class="callout callout-info">
+          <strong>Không dán cookie thủ công</strong>
+          <p>Phiên trình duyệt do app giữ. Chỉ cần xử lý challenge trên tab Browser rồi báo <code>done</code>.</p>
+        </div>
+
+        <h2>3. Chat với Agent</h2>
+        <p>
+          Hỏi bằng tiếng Việt hoặc tiếng Anh bình thường. Agent ưu tiên câu trả lời dễ hiểu —
+          kết quả + việc cần làm tiếp — và giữ đúng tên endpoint, header, giá trị khi cần.
+        </p>
+        <ul>
+          <li>Yêu cầu format output: bảng Markdown, CSV, JSON schema, checklist, Mermaid diagram…</li>
+          <li>Dùng <strong>New chat</strong> / History / Compact / Clear trên thanh chat khi cần tách luồng.</li>
+          <li>Khi pipeline đang hỏi bạn (AskUser / chờ challenge), trả lời ngay trong ô chat.</li>
+        </ul>
+
+        <h2>4. Các tab — khi nào mở</h2>
+        <dl class="tabs-guide">
+          <dt>Agent</dt>
+          <dd>Hỏi đáp, theo dõi transcript pipeline, nhập mục tiêu crawl.</dd>
+          <dt>Sources</dt>
+          <dd>Cây file đã giải mã / nguồn phân tích (khi cần kiểm tra chi tiết kỹ thuật).</dd>
+          <dt>APIs</dt>
+          <dd>Catalog endpoint đã tìm; chỉnh knobs crawl (max pages, skip detail).</dd>
+          <dt>Browser</dt>
+          <dd>Chỉ project Web — xem trang, vượt challenge, hỗ trợ crawl.</dd>
+          <dt>Output (shell)</dt>
+          <dd>Duyệt artifact các lần chạy: report, script crawl, response mẫu…</dd>
+          <dt>Settings</dt>
+          <dd>AI provider (Claude CLI / API key), đường dẫn tool, diagnostics.</dd>
+        </dl>
+
+        <h2>5. Prompt mẫu theo vai trò</h2>
+        <div class="prompt-list">
+          <blockquote class="prompt">
+            <span class="who">PM / BA — IAP</span>
+            “Tóm tắt flow mua hàng trong app (IAP): các màn hình, điều kiện hiện offer, và điểm gọi API thanh toán. Xuất dạng checklist + sơ đồ sequence Mermaid.”
+          </blockquote>
+          <blockquote class="prompt">
+            <span class="who">PM / BA — IAA &amp; tracking</span>
+            “Liệt kê các sự kiện tracking / quảng cáo (IAA) tìm được: tên event, khi nào fire, param quan trọng. Bảng Markdown.”
+          </blockquote>
+          <blockquote class="prompt">
+            <span class="who">PM / BA — rating</span>
+            “App khi nào hiện popup rating? Điều kiện, tần suất, copy nếu có trong nguồn. Trả lời ngắn rồi kèm bảng bằng chứng.”
+          </blockquote>
+          <blockquote class="prompt">
+            <span class="who">Content</span>
+            “Crawl / liệt kê cấu trúc nội dung listing (chuyên mục, field tiêu đề/mô tả/ảnh). Xuất taxonomy dạng bảng để team content tham khảo.”
+          </blockquote>
+          <blockquote class="prompt">
+            <span class="who">Dev — API graph</span>
+            “Vẽ API graph các endpoint liên quan feed và detail theo id: method, path, header bắt buộc, quan hệ gọi. Mermaid hoặc bảng.”
+          </blockquote>
+          <blockquote class="prompt">
+            <span class="who">Dev — schema &amp; DB</span>
+            “Với endpoint …/feed: mô tả request/response field (kiểu, bắt buộc?). Đề xuất draft bảng database tương ứng (tên cột + kiểu).”
+          </blockquote>
+          <blockquote class="prompt">
+            <span class="who">Mọi người — format tùy ý</span>
+            “Trả lời bằng CSV: cột Feature, Flow step, API path, Ghi chú — chỉ các bước liên quan onboarding.”
+          </blockquote>
+        </div>
+
+        <h2>6. Giới hạn quan trọng</h2>
+        <ul>
+          <li>Phân tích <strong>tĩnh / offline</strong> trên artifact trong workspace — không cần máy ảo, root, Frida, MITM.</li>
+          <li>Không yêu cầu bạn copy token / session từ điện thoại đang chạy app.</li>
+          <li>Một số bước (ví dụ secret trong file native) do agent tự xử lý trên máy; bạn chỉ cung cấp tài khoản đăng nhập nếu thật sự cần (email/password bạn đã có).</li>
+          <li>Chỉ chạy <strong>một pipeline</strong> tại một thời điểm; chat project khác vẫn dùng được.</li>
+        </ul>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="faq.html">FAQ &amp; xử lý lỗi</a>
+          <a class="btn btn-ghost" href="setup.html">Quay lại cài đặt</a>
+        </div>
+
+        <footer class="site-footer" id="lien-he">
+          <p>
+            <strong>Liên hệ hỗ trợ:</strong>
+            <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+            · iKame Global
+          </p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>
