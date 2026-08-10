@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iAtlas — Changelog</title>
+  <meta name="description" content="Lịch sử phiên bản iAtlas — có gì mới, cải thiện gì và sửa lỗi gì ở từng bản cài đặt.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" width="36" height="36" alt="">
+        <span class="brand-text">
+          <span class="brand-name">iAtlas</span>
+          <span class="brand-sub">iKame Global</span>
+        </span>
+      </a>
+      <div>
+        <p class="nav-label">Tài liệu</p>
+        <nav class="nav" aria-label="Chính">
+          <a href="index.html">Giới thiệu</a>
+          <a href="setup.html">Cài đặt</a>
+          <a href="usage.html">Hướng dẫn</a>
+          <a href="faq.html">FAQ</a>
+          <a href="changelog.html" aria-current="page">Changelog</a>
+          <a href="#lien-he">Liên hệ</a>
+        </nav>
+      </div>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sidebar">Menu</button>
+          <a class="brand topbar-brand" href="index.html">
+            <img src="assets/logo.svg" width="28" height="28" alt="">
+            <span class="brand-name">iAtlas</span>
+          </a>
+        </div>
+        <div class="topbar-right">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.1/iAtlas-1.0.1-macos-arm64.dmg">
+            <span class="btn-download-icon" aria-hidden="true">↓</span>
+            <span class="btn-download-text">
+              <span class="btn-download-title">Tải iAtlas</span>
+              <span class="btn-download-os" id="downloadOsLabel">Đang nhận diện OS…</span>
+            </span>
+          </a>
+        </div>
+      </header>
+
+      <main class="content" id="main">
+        <p class="eyebrow">Phiên bản</p>
+        <h1>Changelog</h1>
+        <p class="section-lead">
+          Mỗi bản cài đặt có gì mới, cải thiện gì và sửa lỗi gì — viết bằng tiếng thường.
+          Muốn biết mình đang dùng bản nào: trên macOS bấm chuột phải <strong>iAtlas</strong> trong
+          <strong>Applications</strong> → <em>Get Info</em>; trên Windows xem
+          <em>Properties → Details</em> của file cài đặt.
+        </p>
+
+        <div class="callout callout-info">
+          <strong>Cách cập nhật</strong>
+          <p>
+            iAtlas chưa tự cập nhật. Tải bộ cài mới nhất rồi cài đè lên bản cũ:
+            macOS kéo lại vào <strong>Applications</strong> và chọn <em>Replace</em>,
+            Windows chạy lại file EXE. Dự án, chat và dữ liệu đã crawl nằm trong thư mục
+            <code>~/.ai-crawler</code> nên không bị mất khi cài đè.
+          </p>
+        </div>
+
+        <ol class="releases">
+          <li class="release is-latest" id="v1-0-1">
+            <div class="release-head">
+              <h2 class="release-ver">1.0.1</h2>
+              <span class="release-badge">Mới nhất</span>
+              <span class="release-date">10/08/2026</span>
+            </div>
+
+            <p class="release-sum">
+              Thêm app từ file có sẵn trên máy, chọn được văn phong trả lời của trợ lý,
+              và thấy rõ tiến độ khi app đang được nạp.
+            </p>
+
+            <div class="change-group">
+              <span class="change-tag tag-new">Mới</span>
+              <ul class="change-list">
+                <li>
+                  <strong>Thêm app từ máy của bạn.</strong>
+                  Kéo thả file APK vào ô <em>New project</em>, hoặc chọn qua cửa sổ file — dùng cho app
+                  nội bộ, app chưa phát hành hoặc app khoá theo quốc gia mà store không tải được.
+                  Tên gói được đọc thẳng trong file nên bạn không cần biết trước, và file
+                  <code>.apks</code> / <code>.xapk</code> được tự bung về bản APK gốc.
+                </li>
+                <li>
+                  <strong>Chọn người đọc câu trả lời.</strong>
+                  Ngay trong khung chat có hai chế độ: <em>Non-tech</em> (mặc định, ngôn ngữ đời thường)
+                  và <em>Developer</em> (ngôn ngữ kỹ thuật, kèm đường dẫn file và đoạn mã).
+                  Chỉ cách diễn đạt đổi — kết luận và các giá trị bạn cần vẫn y nguyên.
+                  Lựa chọn được nhớ cho lần mở sau.
+                </li>
+                <li>
+                  <strong>Thấy tiến độ khi đang nạp app.</strong>
+                  Khung chat hiện thanh tiến độ ở giữa trong lúc tải hoặc chép app vào dự án,
+                  thay vì trông như đang đứng yên.
+                </li>
+              </ul>
+            </div>
+
+            <div class="change-group">
+              <span class="change-tag tag-improve">Cải thiện</span>
+              <ul class="change-list">
+                <li>
+                  Trợ lý chat mặc định chạy <strong>Sonnet</strong>: nhanh và rẻ hơn khoảng 40% mỗi lượt
+                  so với Opus, chất lượng tương đương cho việc đọc mã app và dò API.
+                  Ai đã tự chọn model khác thì giữ nguyên lựa chọn đó.
+                </li>
+                <li>
+                  Bỏ bước tự tóm tắt hội thoại — tốn thêm chi phí mà không lợi gì,
+                  vì phiên Claude Code đã tự quản lý ngữ cảnh.
+                </li>
+                <li>Tải file và chạy pipeline được đưa ra khỏi luồng giao diện, app không còn khựng khi đang xử lý.</li>
+                <li>Ẩn các bước pipeline không dùng đến; thông báo “đã xong” hiển thị rõ hơn.</li>
+              </ul>
+            </div>
+
+            <div class="change-group">
+              <span class="change-tag tag-fix">Sửa lỗi</span>
+              <ul class="change-list">
+                <li>Sửa lỗi khiến việc tải app trong bản cài đặt chết ngay khi vừa bắt đầu.</li>
+                <li>Sửa lỗi bản cài đặt mở lên rồi tắt ngay do thiếu thành phần đọc dữ liệu JSON.</li>
+                <li>Bộ cài đóng gói lại ổn định, và danh sách công cụ đi kèm ghi đúng phiên bản Java thực sự được đóng gói.</li>
+              </ul>
+            </div>
+
+            <div class="change-group">
+              <span class="change-tag tag-docs">Tài liệu</span>
+              <ul class="change-list">
+                <li>Viết lại trang giới thiệu, cài đặt và hướng dẫn; nút tải trỏ thẳng tới file cài đặt.</li>
+                <li>Thêm chính trang Changelog này để theo dõi phiên bản.</li>
+              </ul>
+            </div>
+
+            <p class="release-files">
+              Bộ cài:
+              <a href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.1/iAtlas-1.0.1-macos-arm64.dmg">iAtlas-1.0.1-macos-arm64.dmg</a>
+              <span class="release-note">· bản Windows của 1.0.1 chưa phát hành — dùng bản 1.0.0 bên dưới.</span>
+            </p>
+          </li>
+
+          <li class="release" id="v1-0-0">
+            <div class="release-head">
+              <h2 class="release-ver">1.0.0</h2>
+              <span class="release-date">05/08/2026</span>
+            </div>
+
+            <p class="release-sum">Bản phát hành đầu tiên cho nội bộ iKame Global.</p>
+
+            <div class="change-group">
+              <span class="change-tag tag-new">Mới</span>
+              <ul class="change-list">
+                <li>
+                  <strong>Dự án APK.</strong> Nhập package name của app Android, iAtlas tải app về,
+                  phân tích tĩnh trên máy bạn rồi trả lời câu hỏi trong khung chat.
+                </li>
+                <li>
+                  <strong>Dự án Web.</strong> Nhập địa chỉ website; có trình duyệt tích hợp để bạn
+                  tự vượt Cloudflare/CAPTCHA khi cần rồi trả lời <code>done</code> cho agent chạy tiếp.
+                </li>
+                <li>
+                  <strong>Hỏi bằng tiếng thường.</strong> Kết quả xuất được dạng bảng, CSV, JSON schema
+                  hoặc diagram theo đúng định dạng bạn yêu cầu.
+                </li>
+                <li>
+                  <strong>Danh mục API.</strong> Endpoint, header bắt buộc, tham số và schema
+                  request/response gom về một tab.
+                </li>
+                <li><strong>Bộ cài macOS Apple Silicon và Windows x64</strong>, kèm sẵn công cụ phân tích — không phải cài thêm gì.</li>
+              </ul>
+            </div>
+
+            <p class="release-files">
+              Bộ cài:
+              <a href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.0/iAtlas-1.0.0-macos-arm64.dmg">iAtlas-1.0.0-macos-arm64.dmg</a>
+              ·
+              <a href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.0/iAtlas-1.0.0-windows-x64.exe">iAtlas-1.0.0-windows-x64.exe</a>
+            </p>
+          </li>
+        </ol>
+
+        <p class="section-lead">
+          Danh sách đầy đủ mọi bản phát hành nằm ở
+          <a href="https://github.com/thanh2811/apk-atlas-releases/releases" rel="noopener" target="_blank">trang Releases</a>.
+        </p>
+
+        <footer class="site-footer" id="lien-he">
+          <p class="footer-lead">
+            <strong>Liên hệ hỗ trợ</strong> · iKame Global
+          </p>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-role">Phụ trách sản phẩm</span>
+              <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+            </li>
+            <li>
+              <span class="contact-role">Supporter dự án</span>
+              <span class="contact-mails">
+                <a href="mailto:chungha@ikameglobal.com">chungha@ikameglobal.com</a>
+                ·
+                <a href="mailto:hoanm@ikameglobal.com">hoanm@ikameglobal.com</a>
+                ·
+                <a href="https://claude.com/claude-code" rel="noopener" target="_blank">Claude Code</a>
+                ·
+                <a href="https://cursor.com" rel="noopener" target="_blank">Cursor</a>
+              </span>
+            </li>
+          </ul>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

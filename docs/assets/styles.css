@@ -678,6 +678,146 @@ li > ol {
   margin-bottom: 0.75rem;
 }
 
+/* ---- Changelog (changelog.html) ---- */
+
+.releases {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 2rem;
+}
+
+.release {
+  position: relative;
+  margin: 0 0 1rem;
+  padding: 1.1rem 1.25rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+
+/* The newest build is the one most visitors came for — give it the brand edge. */
+.release.is-latest {
+  border-color: color-mix(in srgb, var(--primary) 45%, transparent);
+}
+
+.release-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.release-ver {
+  margin: 0;
+  font-size: 1.35rem;
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+
+.release-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary-hover);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.release-date {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+}
+
+.release-sum {
+  margin: 0 0 1rem;
+  color: var(--ink-muted);
+}
+
+.change-group {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0.4rem 0.9rem;
+  align-items: start;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.change-tag {
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+  justify-self: start;
+}
+
+.tag-new {
+  background: var(--primary-soft);
+  color: var(--primary-hover);
+}
+
+.tag-improve {
+  background: var(--teal-soft);
+  color: var(--teal);
+}
+
+.tag-fix {
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+}
+
+.tag-docs {
+  background: var(--code-bg);
+  color: var(--ink-muted);
+}
+
+.change-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.change-list li {
+  margin-bottom: 0.4rem;
+  color: var(--ink-muted);
+}
+
+.change-list li:last-child {
+  margin-bottom: 0;
+}
+
+.change-list strong {
+  color: var(--ink);
+}
+
+.release-files {
+  margin: 1rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  color: var(--ink-muted);
+}
+
+.release-note {
+  font-family: var(--font-sans);
+  color: var(--ink-faint);
+}
+
+@media (max-width: 640px) {
+  .change-group {
+    grid-template-columns: 1fr;
+  }
+
+  .release-date {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
 .use-grid {
   display: grid;
   gap: 0.85rem;
