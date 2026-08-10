@@ -86,68 +86,47 @@
             </div>
 
             <p class="release-sum">
-              Thêm app từ file có sẵn trên máy, chọn được văn phong trả lời của trợ lý,
+              Thêm app từ file có sẵn trên máy, đổi model ngay trong khung chat,
               và thấy rõ tiến độ khi app đang được nạp.
             </p>
 
             <div class="change-group">
               <span class="change-tag tag-new">Mới</span>
               <ul class="change-list">
-                <li>
-                  <strong>Thêm app từ máy của bạn.</strong>
-                  Kéo thả file APK vào ô <em>New project</em>, hoặc chọn qua cửa sổ file — dùng cho app
-                  nội bộ, app chưa phát hành hoặc app khoá theo quốc gia mà store không tải được.
-                  Tên gói được đọc thẳng trong file nên bạn không cần biết trước, và file
-                  <code>.apks</code> / <code>.xapk</code> được tự bung về bản APK gốc.
-                </li>
-                <li>
-                  <strong>Chọn người đọc câu trả lời.</strong>
-                  Ngay trong khung chat có hai chế độ: <em>Non-tech</em> (mặc định, ngôn ngữ đời thường)
-                  và <em>Developer</em> (ngôn ngữ kỹ thuật, kèm đường dẫn file và đoạn mã).
-                  Chỉ cách diễn đạt đổi — kết luận và các giá trị bạn cần vẫn y nguyên.
-                  Lựa chọn được nhớ cho lần mở sau.
-                </li>
-                <li>
-                  <strong>Thấy tiến độ khi đang nạp app.</strong>
-                  Khung chat hiện thanh tiến độ ở giữa trong lúc tải hoặc chép app vào dự án,
-                  thay vì trông như đang đứng yên.
-                </li>
+                <li><strong>Thêm app từ máy của bạn.</strong> Kéo thả file APK vào ô <em>New project</em> — dùng cho app nội bộ hoặc app store không tải được.</li>
+                <li><strong>Đổi model ngay trong khung chat.</strong> Không phải vào Settings nữa; nút Model nằm cạnh nút Effort.</li>
+                <li><strong>Thanh tiến độ khi đang nạp app.</strong> Khung chat không còn trông như đứng yên.</li>
               </ul>
             </div>
 
-            <div class="change-group">
-              <span class="change-tag tag-improve">Cải thiện</span>
-              <ul class="change-list">
-                <li>
-                  Trợ lý chat mặc định chạy <strong>Sonnet</strong>: nhanh và rẻ hơn khoảng 40% mỗi lượt
-                  so với Opus, chất lượng tương đương cho việc đọc mã app và dò API.
-                  Ai đã tự chọn model khác thì giữ nguyên lựa chọn đó.
-                </li>
-                <li>
-                  Bỏ bước tự tóm tắt hội thoại — tốn thêm chi phí mà không lợi gì,
-                  vì phiên Claude Code đã tự quản lý ngữ cảnh.
-                </li>
-                <li>Tải file và chạy pipeline được đưa ra khỏi luồng giao diện, app không còn khựng khi đang xử lý.</li>
-                <li>Ẩn các bước pipeline không dùng đến; thông báo “đã xong” hiển thị rõ hơn.</li>
-              </ul>
-            </div>
+            <details class="release-more">
+              <summary>Xem thêm…</summary>
 
-            <div class="change-group">
-              <span class="change-tag tag-fix">Sửa lỗi</span>
-              <ul class="change-list">
-                <li>Sửa lỗi khiến việc tải app trong bản cài đặt chết ngay khi vừa bắt đầu.</li>
-                <li>Sửa lỗi bản cài đặt mở lên rồi tắt ngay do thiếu thành phần đọc dữ liệu JSON.</li>
-                <li>Bộ cài đóng gói lại ổn định, và danh sách công cụ đi kèm ghi đúng phiên bản Java thực sự được đóng gói.</li>
-              </ul>
-            </div>
+              <div class="change-group">
+                <span class="change-tag tag-improve">Cải thiện</span>
+                <ul class="change-list">
+                  <li>Chọn <em>Non-tech</em> / <em>Developer</em> chuyển vào Settings — đặt một lần, không hỏi lại mỗi câu. Mặc định vẫn là Non-tech.</li>
+                  <li>Trợ lý chat mặc định chạy <strong>Sonnet</strong>: rẻ hơn khoảng 40% mỗi lượt, chất lượng tương đương. Ai đã chọn model khác thì giữ nguyên.</li>
+                  <li>Bỏ bước tự tóm tắt hội thoại — tốn tiền mà không lợi gì.</li>
+                  <li>Tải file và chạy pipeline không còn làm app khựng; ẩn các bước pipeline không dùng đến.</li>
+                </ul>
+              </div>
 
-            <div class="change-group">
-              <span class="change-tag tag-docs">Tài liệu</span>
-              <ul class="change-list">
-                <li>Viết lại trang giới thiệu, cài đặt và hướng dẫn; nút tải trỏ thẳng tới file cài đặt.</li>
-                <li>Thêm chính trang Changelog này để theo dõi phiên bản.</li>
-              </ul>
-            </div>
+              <div class="change-group">
+                <span class="change-tag tag-fix">Sửa lỗi</span>
+                <ul class="change-list">
+                  <li>Sửa lỗi tải app chết ngay khi vừa bắt đầu.</li>
+                  <li>Sửa lỗi bản cài đặt mở lên rồi tắt ngay.</li>
+                </ul>
+              </div>
+
+              <div class="change-group">
+                <span class="change-tag tag-docs">Tài liệu</span>
+                <ul class="change-list">
+                  <li>Viết lại trang giới thiệu, cài đặt, hướng dẫn và thêm trang Changelog này.</li>
+                </ul>
+              </div>
+            </details>
 
             <p class="release-files">
               Bộ cài:
@@ -167,25 +146,23 @@
             <div class="change-group">
               <span class="change-tag tag-new">Mới</span>
               <ul class="change-list">
-                <li>
-                  <strong>Dự án APK.</strong> Nhập package name của app Android, iAtlas tải app về,
-                  phân tích tĩnh trên máy bạn rồi trả lời câu hỏi trong khung chat.
-                </li>
-                <li>
-                  <strong>Dự án Web.</strong> Nhập địa chỉ website; có trình duyệt tích hợp để bạn
-                  tự vượt Cloudflare/CAPTCHA khi cần rồi trả lời <code>done</code> cho agent chạy tiếp.
-                </li>
-                <li>
-                  <strong>Hỏi bằng tiếng thường.</strong> Kết quả xuất được dạng bảng, CSV, JSON schema
-                  hoặc diagram theo đúng định dạng bạn yêu cầu.
-                </li>
-                <li>
-                  <strong>Danh mục API.</strong> Endpoint, header bắt buộc, tham số và schema
-                  request/response gom về một tab.
-                </li>
-                <li><strong>Bộ cài macOS Apple Silicon và Windows x64</strong>, kèm sẵn công cụ phân tích — không phải cài thêm gì.</li>
+                <li><strong>Dự án APK.</strong> Nhập package name, iAtlas tải app về và trả lời câu hỏi của bạn trong khung chat.</li>
+                <li><strong>Dự án Web.</strong> Nhập địa chỉ website; có trình duyệt tích hợp để tự vượt Cloudflare/CAPTCHA khi cần.</li>
               </ul>
             </div>
+
+            <details class="release-more">
+              <summary>Xem thêm…</summary>
+
+              <div class="change-group">
+                <span class="change-tag tag-new">Mới</span>
+                <ul class="change-list">
+                  <li><strong>Hỏi bằng tiếng thường.</strong> Xuất kết quả dạng bảng, CSV, JSON schema hoặc diagram theo định dạng bạn yêu cầu.</li>
+                  <li><strong>Danh mục API.</strong> Endpoint, header bắt buộc, tham số và schema request/response gom về một tab.</li>
+                  <li><strong>Bộ cài macOS Apple Silicon và Windows x64</strong>, kèm sẵn công cụ phân tích — không phải cài thêm gì.</li>
+                </ul>
+              </div>
+            </details>
 
             <p class="release-files">
               Bộ cài:

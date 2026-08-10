@@ -793,6 +793,32 @@ li > ol {
   color: var(--ink);
 }
 
+/* Long entries stay one screen tall until asked — the headline changes read first. */
+.release-more > summary {
+  cursor: pointer;
+  padding: 0.6rem 0 0.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-hover);
+  list-style: none;
+}
+
+.release-more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.release-more > summary::after {
+  content: " ▾";
+}
+
+.release-more[open] > summary::after {
+  content: " ▴";
+}
+
+.release-more[open] > summary {
+  margin-bottom: 0.35rem;
+}
+
 .release-files {
   margin: 1rem 0 0;
   padding-top: 0.75rem;
