@@ -47,7 +47,7 @@
           </a>
         </div>
         <div class="topbar-right">
-          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.1/iAtlas-1.0.1-macos-arm64.dmg">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.2/iAtlas-1.0.2-macos-arm64.dmg">
             <span class="btn-download-icon" aria-hidden="true">↓</span>
             <span class="btn-download-text">
               <span class="btn-download-title">Tải iAtlas</span>
@@ -70,18 +70,66 @@
         <div class="callout callout-info">
           <strong>Cách cập nhật</strong>
           <p>
-            iAtlas chưa tự cập nhật. Tải bộ cài mới nhất rồi cài đè lên bản cũ:
-            macOS kéo lại vào <strong>Applications</strong> và chọn <em>Replace</em>,
-            Windows chạy lại file EXE. Dự án, chat và dữ liệu đã crawl nằm trong thư mục
+            Từ 1.0.2, iAtlas báo khi có bản mới (nút <strong>Update</strong> bên trái).
+            Bấm để mở trang tải, rồi cài đè lên bản cũ: macOS kéo lại vào
+            <strong>Applications</strong> và chọn <em>Replace</em>, Windows chạy lại file EXE.
+            Dự án, chat và dữ liệu đã crawl nằm trong thư mục
             <code>~/.ai-crawler</code> nên không bị mất khi cài đè.
           </p>
         </div>
 
         <ol class="releases">
-          <li class="release is-latest" id="v1-0-1">
+          <li class="release is-latest" id="v1-0-2">
+            <div class="release-head">
+              <h2 class="release-ver">1.0.2</h2>
+              <span class="release-badge">Mới nhất</span>
+              <span class="release-date">12/08/2026</span>
+            </div>
+
+            <p class="release-sum">
+              Báo khi có bản mới, chat hiểu app sâu hơn nhờ chỉ mục mã nguồn,
+              và gửi crash về Firebase để sửa nhanh hơn.
+            </p>
+
+            <div class="change-group">
+              <span class="change-tag tag-new">Mới</span>
+              <ul class="change-list">
+                <li><strong>Có bản mới thì báo.</strong> Nút Update bên trái (chấm đỏ khi có bản mới) mở trang tải GitHub. Cài đè không mất project hay lịch sử chat.</li>
+                <li><strong>Chat đọc chỉ mục app.</strong> Sau khi giải mã APK, trợ lý tra màn hình, API và luồng chuyển màn thay vì đoán từ vài file mẫu.</li>
+                <li><strong>Ghi nhận crash.</strong> Lỗi không mong muốn được gửi về Firebase (không gửi nội dung chat).</li>
+              </ul>
+            </div>
+
+            <details class="release-more">
+              <summary>Xem thêm…</summary>
+
+              <div class="change-group">
+                <span class="change-tag tag-improve">Cải thiện</span>
+                <ul class="change-list">
+                  <li>Giữ cookie/token đăng nhập giữa các lần chạy crawl; dừng sau hai lần thử thay vì lặp vô hạn.</li>
+                  <li>Gói playbook reverse-skill để trợ lý bám đúng cách làm việc với APK / JS / native.</li>
+                  <li>Xuất thêm bản đồ chuyển màn (<code>flows.json</code>) từ app đã giải mã.</li>
+                </ul>
+              </div>
+
+              <div class="change-group">
+                <span class="change-tag tag-fix">Sửa lỗi</span>
+                <ul class="change-list">
+                  <li>Sửa crash danh sách project khi hai mục trùng tên/alias.</li>
+                </ul>
+              </div>
+            </details>
+
+            <p class="release-files">
+              Bộ cài:
+              <a href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.2/iAtlas-1.0.2-macos-arm64.dmg">iAtlas-1.0.2-macos-arm64.dmg</a>
+              <span class="release-note">· bản Windows của 1.0.2 chưa phát hành — dùng bản 1.0.0 bên dưới.</span>
+            </p>
+          </li>
+
+          <li class="release" id="v1-0-1">
             <div class="release-head">
               <h2 class="release-ver">1.0.1</h2>
-              <span class="release-badge">Mới nhất</span>
               <span class="release-date">10/08/2026</span>
             </div>
 
