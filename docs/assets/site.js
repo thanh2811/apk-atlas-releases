@@ -1,5 +1,5 @@
 /**
- * iAtlas docs — OS detect, download CTA, setup tabs.
+ * iAtlas docs — OS detect, download CTA, setup tabs, visit counter.
  * Binaries live on public repo thanh2811/apk-atlas-releases.
  */
 (function () {
@@ -7,7 +7,7 @@
   var MACOS_ARM64_DMG =
     "https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.2/iAtlas-1.0.2-macos-arm64.dmg";
   var WINDOWS_X64_EXE =
-    "https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.2/iAtlas-1.0.2-windows-x64.exe";
+    "https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.0/iAtlas-1.0.0-windows-x64.exe";
   var DOWNLOADS = {
     "macos-arm64": {
       url: MACOS_ARM64_DMG,
@@ -218,6 +218,225 @@
     });
   }
 
+  /**
+   * Demo page: a slot whose screenshot has not been added yet renders a dashed
+   * placeholder naming the file to drop in, so adding images needs no HTML edit.
+   */
+  function bindDemoSlots() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-demo-slot]"), function (figure) {
+      var img = figure.querySelector("img");
+      if (!img) return;
+
+      function showPlaceholder() {
+        if (figure.classList.contains("is-empty")) return;
+        figure.classList.add("is-empty");
+        var trigger = img.closest("a") || img;
+        var box = document.createElement("div");
+        box.className = "demo-empty";
+
+        var icon = document.createElement("span");
+        icon.className = "demo-empty-icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = "+";
+
+        var title = document.createElement("span");
+        title.className = "demo-empty-title";
+        title.textContent = "Chưa có ảnh demo";
+
+        var file = document.createElement("code");
+        file.className = "demo-empty-file";
+        file.textContent = "docs/assets/demo/" + figure.getAttribute("data-demo-slot");
+
+        var hint = document.createElement("span");
+        hint.className = "demo-empty-hint";
+        hint.textContent = "Thả ảnh vào đúng đường dẫn trên rồi tải lại trang.";
+
+        box.appendChild(icon);
+        box.appendChild(title);
+        box.appendChild(file);
+        box.appendChild(hint);
+        trigger.parentNode.replaceChild(box, trigger);
+      }
+
+      img.addEventListener("error", showPlaceholder);
+      // Cached failures fire before this listener is attached.
+      if (img.complete && img.naturalWidth === 0) showPlaceholder();
+    });
+  }
+
+  /**
+   * Visit counter — same Firebase project as the desktop app (iatlas-150ce).
+   * The page signs in anonymously, then increments `site_stats/docs.visits`
+   * through the Firestore REST API; the web API key is public by design.
+   *
+   * A browser is counted once per calendar day; later views only read the total.
+   * Requires these Firestore rules:
+   *
+   *   match /site_stats/{docId} {
+   *     allow read: if request.auth != null;
+   *     allow create: if request.auth != null && request.resource.data.visits == 1;
+   *     allow update: if request.auth != null
+   *       && request.resource.data.visits == resource.data.visits + 1
+   *       && request.resource.data.diff(resource.data).affectedKeys()
+   *            .hasOnly(['visits', 'lastVisitAt']);
+   *   }
+   */
+  var FIREBASE = {
+    apiKey: "AIzaSyC74uxUOAPsXvCfN7wDutcZezUisdbj6zg",
+    projectId: "iatlas-150ce",
+    docPath: "site_stats/docs",
+    field: "visits",
+  };
+  var STORE_REFRESH = "iatlas.docs.refreshToken";
+  var STORE_DAY = "iatlas.docs.countedDay";
+
+  function readStore(key) {
+    try {
+      return window.localStorage.getItem(key);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeStore(key, value) {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch (e) {
+      /* private mode — counting still works, just not deduped */
+    }
+  }
+
+  function documentName() {
+    return (
+      "projects/" + FIREBASE.projectId + "/databases/(default)/documents/" + FIREBASE.docPath
+    );
+  }
+
+  function postJson(url, body) {
+    return fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }).then(function (res) {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    });
+  }
+
+  /** Reuses the stored refresh token so repeat visitors don't create new anon users. */
+  function idToken() {
+    var refresh = readStore(STORE_REFRESH);
+    if (refresh) {
+      return postJson("https://securetoken.googleapis.com/v1/token?key=" + FIREBASE.apiKey, {
+        grant_type: "refresh_token",
+        refresh_token: refresh,
+      })
+        .then(function (data) {
+          return data.id_token;
+        })
+        .catch(signInAnonymously);
+    }
+    return signInAnonymously();
+  }
+
+  function signInAnonymously() {
+    return postJson(
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + FIREBASE.apiKey,
+      { returnSecureToken: true }
+    ).then(function (data) {
+      if (data.refreshToken) writeStore(STORE_REFRESH, data.refreshToken);
+      return data.idToken;
+    });
+  }
+
+  /** Atomic +1 on the server; the response carries the new total. */
+  function incrementVisits(token) {
+    var url =
+      "https://firestore.googleapis.com/v1/projects/" +
+      FIREBASE.projectId +
+      "/databases/(default)/documents:commit";
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        writes: [
+          {
+            // Empty updateMask = touch no field directly, so the doc is created
+            // if missing and the transforms below do the actual work.
+            update: { name: documentName() },
+            updateMask: { fieldPaths: [] },
+            updateTransforms: [
+              { fieldPath: FIREBASE.field, increment: { integerValue: "1" } },
+              { fieldPath: "lastVisitAt", setToServerValue: "REQUEST_TIME" },
+            ],
+          },
+        ],
+      }),
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        var results = (data.writeResults && data.writeResults[0].transformResults) || [];
+        return results.length ? Number(results[0].integerValue) : null;
+      });
+  }
+
+  function readVisits(token) {
+    var url =
+      "https://firestore.googleapis.com/v1/projects/" +
+      FIREBASE.projectId +
+      "/databases/(default)/documents/" +
+      FIREBASE.docPath;
+    return fetch(url, { headers: { Authorization: "Bearer " + token } })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        var field = data.fields && data.fields[FIREBASE.field];
+        return field ? Number(field.integerValue) : 0;
+      });
+  }
+
+  function today() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  /**
+   * Fills the footer counter:
+   * 1. sign in anonymously (or refresh the stored session);
+   * 2. first view of the day increments, later views only read;
+   * 3. show the total — on any failure the counter stays hidden.
+   */
+  function bindVisitCounter() {
+    var box = document.getElementById("visitCounter");
+    var value = document.getElementById("visitCount");
+    if (!box || !value) return;
+    var firstToday = readStore(STORE_DAY) !== today();
+
+    idToken()
+      .then(function (token) {
+        if (!firstToday) return readVisits(token);
+        return incrementVisits(token).then(function (total) {
+          writeStore(STORE_DAY, today());
+          return total === null ? readVisits(token) : total;
+        });
+      })
+      .then(function (total) {
+        if (typeof total !== "number" || isNaN(total)) return;
+        value.textContent = total.toLocaleString("vi-VN");
+        box.hidden = false;
+      })
+      .catch(function () {
+        /* offline or rules not deployed — leave the counter hidden */
+      });
+  }
+
   function bindNav() {
     var btn = document.getElementById("menuBtn");
     var backdrop = document.getElementById("navBackdrop");
@@ -240,7 +459,9 @@
     bindNav();
     bindSetupTabs();
     bindPlainTabs();
+    bindDemoSlots();
     bindLightbox();
+    bindVisitCounter();
     var initial = detectOsKey();
     applyDownload(initial);
     activateSetupTab(initial);

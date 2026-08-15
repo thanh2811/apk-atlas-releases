@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo — iAtlas</title>
+  <meta name="description" content="Ảnh chụp thật từ iAtlas: tạo project, chạy phân tích, hỏi agent, xem API và file kết quả.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" width="36" height="36" alt="">
+        <span class="brand-text">
+          <span class="brand-name">iAtlas</span>
+          <span class="brand-sub">iKame Global</span>
+        </span>
+      </a>
+      <div>
+        <p class="nav-label">Tài liệu</p>
+        <nav class="nav" aria-label="Chính">
+          <a href="index.html">Giới thiệu</a>
+          <a href="setup.html">Cài đặt</a>
+          <a href="usage.html">Hướng dẫn</a>
+          <a href="demo.html" aria-current="page">Demo</a>
+          <a href="faq.html">FAQ</a>
+          <a href="changelog.html">Changelog</a>
+          <a href="#lien-he">Liên hệ</a>
+        </nav>
+      </div>
+      <p class="visit-counter" id="visitCounter" hidden>
+        <svg class="visit-eye" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1.6 12S5.4 5.2 12 5.2 22.4 12 22.4 12 18.6 18.8 12 18.8 1.6 12 1.6 12Z"/>
+          <circle cx="12" cy="12" r="3.1"/>
+        </svg>
+        <span class="visit-count" id="visitCount">0</span>
+        <span class="visit-label">lượt xem</span>
+      </p>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sidebar">Menu</button>
+          <a class="brand topbar-brand" href="index.html">
+            <img src="assets/logo.svg" width="28" height="28" alt="">
+            <span class="brand-name">iAtlas</span>
+          </a>
+        </div>
+        <div class="topbar-right">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.2/iAtlas-1.0.2-macos-arm64.dmg">
+            <span class="btn-download-icon" aria-hidden="true">↓</span>
+            <span class="btn-download-text">
+              <span class="btn-download-title">Tải iAtlas</span>
+              <span class="btn-download-os" id="downloadOsLabel">Đang nhận diện OS…</span>
+            </span>
+          </a>
+        </div>
+      </header>
+
+      <main class="content" id="main">
+        <p class="eyebrow">Xem trước · ảnh chụp từ máy thật</p>
+        <h1>Demo</h1>
+        <p class="lead">
+          Một lần dùng iAtlas kể bằng ảnh: tạo project cho app muốn xem, đợi phân tích xong,
+          rồi hỏi bằng tiếng thường. Bấm vào ảnh bất kỳ để xem cỡ lớn.
+        </p>
+
+        <div class="flow" aria-label="Luồng trong demo">
+          <span>Tạo project</span>
+          <span class="arrow" aria-hidden="true">→</span>
+          <span>Chạy phân tích</span>
+          <span class="arrow" aria-hidden="true">→</span>
+          <span>Hỏi agent</span>
+        </div>
+
+        <h2 id="apk">Đọc một app Android</h2>
+        <p class="section-lead">
+          Chỉ cần package name của app trên Google Play. iAtlas tự tải file cài đặt về máy bạn
+          rồi phân tích, không đụng đến điện thoại.
+        </p>
+
+        <div class="demo-grid">
+          <article class="demo-card">
+            <header class="demo-head">
+              <span class="demo-step">01</span>
+              <h3>Tạo project APK</h3>
+            </header>
+            <p>
+              Chọn <strong>Type: APK</strong>, để nguồn là <strong>Store</strong> (hoặc
+              <strong>This computer</strong> nếu bạn đã có sẵn file APK), dán package name dạng
+              <code>com.example.app</code> rồi bấm <strong>Create project</strong>.
+              Ô <em>Name</em> chỉ để dễ nhận ra project trong danh sách.
+            </p>
+            <figure class="shot demo-shot demo-shot-narrow" data-demo-slot="apk-new-project.png">
+              <a href="assets/demo/apk-new-project.png" target="_blank" rel="noopener">
+                <img src="assets/demo/apk-new-project.png" alt="Hộp thoại New project của iAtlas với loại APK và ô nhập package name">
+              </a>
+              <figcaption>
+                Giữ bật <em>Download &amp; decompile right after creating</em> thì app tải và phân tích luôn —
+                không phải bấm gì thêm.
+              </figcaption>
+            </figure>
+          </article>
+
+          <article class="demo-card">
+            <header class="demo-head">
+              <span class="demo-step">02</span>
+              <h3>Pipeline chạy xong 4/4</h3>
+            </header>
+            <p>Bốn bước tự động: tải app → giải nén → nhận diện công nghệ → quét phần lõi.</p>
+            <figure class="shot shot-wide demo-shot" data-demo-slot="pipeline-done.png">
+              <a href="assets/pipeline-done.png" target="_blank" rel="noopener">
+                <img src="assets/pipeline-done.png" alt="Màn Agent của iAtlas khi pipeline đã chạy xong 4/4 bước">
+              </a>
+              <figcaption>Thấy <strong>4 / 4 · complete</strong> ở sidebar trái là hỏi được rồi.</figcaption>
+            </figure>
+          </article>
+
+          <article class="demo-card">
+            <header class="demo-head">
+              <span class="demo-step">03</span>
+              <h3>Hỏi một câu thật</h3>
+            </header>
+            <blockquote class="prompt">
+              “Đây là app sức khỏe, tính calory của món ăn. App có thuật toán riêng chấm điểm độ
+              “healthy” của sản phẩm (ví dụ 48/100). Có check được logic tính điểm này không?”
+            </blockquote>
+            <figure class="shot shot-wide demo-shot" data-demo-slot="chat-example.png">
+              <a href="assets/chat-example.png" target="_blank" rel="noopener">
+                <img src="assets/chat-example.png" alt="Agent trả lời câu hỏi về cách app chấm điểm healthy">
+              </a>
+              <figcaption>Agent trả lời kết luận trước, rồi dẫn đúng file làm bằng chứng và gợi ý bước tiếp theo.</figcaption>
+            </figure>
+          </article>
+        </div>
+
+        <div class="callout callout-info">
+          <strong>Ảnh chụp trên máy thật, không dựng</strong>
+          <p>
+            Mọi ảnh ở trang này chụp từ iAtlas đang chạy. Tên app và tên miền trong ảnh
+            có thể được làm mờ khi liên quan đối tác.
+          </p>
+        </div>
+
+        <details class="doc-roadmap">
+          <summary>Cho người quản trị trang: cách thêm ảnh demo</summary>
+          <p>
+            Mỗi ô ảnh trên đọc đúng một file trong <code>docs/assets/demo/</code>.
+            Ô nào chưa có file thì hiện khung chờ kèm tên file cần đặt — thả ảnh vào đúng tên đó,
+            reload trang là hiện, không phải sửa HTML.
+          </p>
+          <ol class="roadmap">
+            <li><code>assets/demo/apk-new-project.png</code> — hộp thoại New project, loại APK.</li>
+            <li><code>assets/pipeline-done.png</code> — màn Agent khi pipeline xong 4/4.</li>
+            <li><code>assets/chat-example.png</code> — agent trả lời một câu hỏi thật.</li>
+          </ol>
+          <p>
+            Ảnh nên chụp cửa sổ app ở chiều rộng ~1440px, định dạng PNG, che thông tin nhạy cảm trước khi commit.
+          </p>
+        </details>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="setup.html">Tải &amp; cài đặt</a>
+          <a class="btn btn-ghost" href="usage.html">Xem hướng dẫn dùng</a>
+        </div>
+
+        <footer class="site-footer" id="lien-he">
+          <p class="footer-lead">
+            <strong>Liên hệ hỗ trợ</strong> · iKame Global
+          </p>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-role">Phụ trách sản phẩm</span>
+              <a href="mailto:thanhpv@ikameglobal.com">thanhpv@ikameglobal.com</a>
+            </li>
+            <li>
+              <span class="contact-role">Supporter dự án</span>
+              <span class="contact-mails">
+                <a href="mailto:chungha@ikameglobal.com">chungha@ikameglobal.com</a>
+                ·
+                <a href="mailto:hoanm@ikameglobal.com">hoanm@ikameglobal.com</a>
+                ·
+                <a href="https://claude.com/claude-code" rel="noopener" target="_blank">Claude Code</a>
+                ·
+                <a href="https://cursor.com" rel="noopener" target="_blank">Cursor</a>
+              </span>
+            </li>
+          </ul>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

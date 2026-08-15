@@ -1244,6 +1244,40 @@ tr:last-child td {
   margin-bottom: 0.75rem;
 }
 
+/*
+ * Bộ đếm lượt xem — `margin-top: auto` đẩy xuống đáy sidebar (khoảng trống dồn
+ * vào giữa), `sticky` giữ nó dính đáy cả khi menu dài phải cuộn.
+ * Ẩn cho tới khi lấy được số từ Firestore.
+ */
+.visit-counter {
+  margin: auto 0 0;
+  position: sticky;
+  bottom: 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border-subtle);
+  background: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.visit-counter[hidden] {
+  display: none;
+}
+
+.visit-eye {
+  flex: none;
+  color: var(--teal);
+}
+
+.visit-count {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--ink);
+}
+
 .contact-list {
   list-style: none;
   margin: 0 0 1rem;
@@ -1333,6 +1367,119 @@ body.lightbox-open {
 .shot img,
 .shot a {
   cursor: zoom-in;
+}
+
+/* Trang Demo — mỗi thẻ là một bước có ảnh chụp kèm */
+.demo-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.demo-card {
+  padding: 1.1rem 1.2rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+
+.demo-card > p {
+  margin: 0 0 0.35rem;
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+}
+
+.demo-card .prompt {
+  margin: 0.5rem 0 0;
+}
+
+.demo-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.demo-head h3 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.demo-step {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary-hover);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.demo-shot {
+  margin-top: 0.75rem;
+}
+
+/* Ảnh hộp thoại dạng dọc — giữ hẹp và căn giữa thẻ */
+.demo-shot-narrow a,
+.demo-shot-narrow figcaption {
+  display: block;
+  max-width: 24rem;
+  margin-inline: auto;
+}
+
+.demo-shot-narrow img {
+  width: 100%;
+}
+
+.demo-shot-narrow .demo-empty {
+  max-width: 24rem;
+  margin-inline: auto;
+}
+
+/* Khung chờ khi file ảnh chưa được thêm vào assets/demo/ */
+.demo-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 2rem 1rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--code-bg);
+  text-align: center;
+}
+
+.demo-empty-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--ink-faint);
+}
+
+.demo-empty-title {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.demo-empty-file {
+  font-size: 0.78rem;
+  background: var(--bg-elevated);
+}
+
+.demo-empty-hint {
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+
+@media (min-width: 900px) {
+  .demo-grid {
+    gap: 1.1rem;
+  }
 }
 
 @media (max-width: 860px) {
