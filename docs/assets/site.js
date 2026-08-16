@@ -5,7 +5,7 @@
 (function () {
   var RELEASES_URL = "https://github.com/thanh2811/apk-atlas-releases/releases";
   var MACOS_ARM64_DMG =
-    "https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.2/iAtlas-1.0.2-macos-arm64.dmg";
+    "https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.3/iAtlas-1.0.3-macos-arm64.dmg";
   var WINDOWS_X64_EXE =
     "https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.0/iAtlas-1.0.0-windows-x64.exe";
   var DOWNLOADS = {
@@ -147,28 +147,47 @@
   }
 
   /**
-   * Generic tab groups (`[data-tabs]`) — unlike the OS tabs these carry no download logic,
-   * so the first tab simply stays the default.
+   * Generic tab groups (`[data-tabs]`) — unlike the OS tabs these carry no download logic.
+   * The first tab is the default; `#game` / `#app` (and `#apk` / `#web` on Hướng dẫn) switch on load.
    */
   function bindPlainTabs() {
     Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), function (group) {
       var tabs = group.querySelectorAll("[data-tab]");
+
+      function tabByKey(key) {
+        for (var i = 0; i < tabs.length; i++) {
+          if (tabs[i].getAttribute("data-tab") === key) return tabs[i];
+        }
+        return null;
+      }
+
+      function activate(key, updateHash) {
+        if (!tabByKey(key)) return;
+        Array.prototype.forEach.call(tabs, function (other) {
+          var active = other.getAttribute("data-tab") === key;
+          other.classList.toggle("is-active", active);
+          other.setAttribute("aria-selected", active ? "true" : "false");
+          other.setAttribute("tabindex", active ? "0" : "-1");
+        });
+        Array.prototype.forEach.call(group.querySelectorAll("[data-panel]"), function (panel) {
+          var active = panel.getAttribute("data-panel") === key;
+          panel.classList.toggle("is-active", active);
+          panel.hidden = !active;
+        });
+        if (updateHash && window.history && history.replaceState) {
+          history.replaceState(null, "", "#" + key);
+        }
+      }
+
       Array.prototype.forEach.call(tabs, function (tab) {
         tab.addEventListener("click", function () {
-          var key = tab.getAttribute("data-tab");
-          Array.prototype.forEach.call(tabs, function (other) {
-            var active = other === tab;
-            other.classList.toggle("is-active", active);
-            other.setAttribute("aria-selected", active ? "true" : "false");
-            other.setAttribute("tabindex", active ? "0" : "-1");
-          });
-          Array.prototype.forEach.call(group.querySelectorAll("[data-panel]"), function (panel) {
-            var active = panel.getAttribute("data-panel") === key;
-            panel.classList.toggle("is-active", active);
-            panel.hidden = !active;
-          });
+          activate(tab.getAttribute("data-tab"), true);
         });
       });
+
+      var hash = (location.hash || "").replace(/^#/, "");
+      if (hash === "apk" && tabByKey("app")) hash = "app";
+      if (hash) activate(hash, false);
     });
   }
 

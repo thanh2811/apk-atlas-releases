@@ -56,7 +56,7 @@
           </a>
         </div>
         <div class="topbar-right">
-          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.2/iAtlas-1.0.2-macos-arm64.dmg">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.3/iAtlas-1.0.3-macos-arm64.dmg">
             <span class="btn-download-icon" aria-hidden="true">↓</span>
             <span class="btn-download-text">
               <span class="btn-download-title">Tải iAtlas</span>
@@ -70,7 +70,7 @@
         <p class="eyebrow">Vận hành hàng ngày</p>
         <h1>Hướng dẫn sử dụng</h1>
         <p class="lead">
-          Ba việc lặp lại mỗi ngày: tạo project cho app hoặc website muốn xem,
+          Ba việc lặp lại mỗi ngày: tạo project cho app, game hoặc website muốn xem,
           đợi iAtlas phân tích xong, rồi hỏi agent bằng tiếng thường.
           Kết quả xem ở tab <strong>APIs</strong> hoặc màn <strong>Output</strong>.
         </p>
@@ -93,11 +93,15 @@
         </p>
 
         <h2>1. Tạo project &amp; chạy phân tích</h2>
-        <p>Chọn loại dự án bạn cần — thao tác hai bên hơi khác nhau.</p>
+        <p>
+          Chọn loại dự án bạn cần — thao tác hai bên hơi khác nhau.
+          App thường và game Android đều dùng loại <strong>APK</strong>; iAtlas tự nhận diện
+          (Java, Flutter, React Native, Unity…).
+        </p>
 
         <div class="os-tabs" data-tabs="project">
           <div class="os-tablist" role="tablist" aria-label="Loại dự án">
-            <button type="button" class="os-tab is-active" role="tab" data-tab="apk" aria-selected="true" aria-controls="panel-apk" id="tab-apk">App Android (APK)</button>
+            <button type="button" class="os-tab is-active" role="tab" data-tab="apk" aria-selected="true" aria-controls="panel-apk" id="tab-apk">App / Game (APK)</button>
             <button type="button" class="os-tab" role="tab" data-tab="web" aria-selected="false" aria-controls="panel-web" id="tab-web" tabindex="-1">Website (Web)</button>
           </div>
 
@@ -109,7 +113,7 @@
               </li>
               <li>
                 <strong>Nhập package name</strong>
-                Dạng <code>com.example.app</code> — lấy từ link Google Play của app
+                Dạng <code>com.example.app</code> — lấy từ link Google Play của app hoặc game
                 (phần sau <code>?id=</code>). Ô <em>Name</em> để trống cũng được.
               </li>
               <li>
@@ -257,6 +261,22 @@
           <blockquote class="prompt">
             <span class="who">Dev — schema &amp; DB</span>
             “Với endpoint …/feed: mô tả request/response field (kiểu, bắt buộc?). Đề xuất draft bảng database tương ứng (tên cột + kiểu).”
+          </blockquote>
+          <blockquote class="prompt">
+            <span class="who">PM Game — IAP</span>
+            “Tóm tắt flow mua hàng trong game (IAP): các màn hình, lúc hết lượt thì hỏi mua, điểm gọi thanh toán. Xuất dạng checklist + sơ đồ.”
+          </blockquote>
+          <blockquote class="prompt">
+            <span class="who">PM Game — IAA</span>
+            “Liệt kê chỗ hiện quảng cáo trong lúc chơi: xem ads để tiếp tục, thêm vật phẩm, nhân đôi thưởng. Bảng Markdown.”
+          </blockquote>
+          <blockquote class="prompt">
+            <span class="who">Game Dev — công thức</span>
+            “Tìm công thức damage / drop rate / regen năng lượng. Dẫn đúng class C# đã khôi phục từ Unity.”
+          </blockquote>
+          <blockquote class="prompt">
+            <span class="who">Game Dev — SDK &amp; network</span>
+            “Liệt kê SDK ads / IAP / analytics đã nhúng, và các API server game gọi (method, path, header).”
           </blockquote>
           <blockquote class="prompt">
             <span class="who">Mọi người — format tùy ý</span>

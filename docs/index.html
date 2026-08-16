@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>iAtlas — Tài liệu sử dụng</title>
-  <meta name="description" content="iAtlas — app desktop (macOS &amp; Windows) giúp PM, BA, Content và Dev hiểu app, website đối thủ qua giao diện chat.">
+  <meta name="description" content="iAtlas — app desktop (macOS &amp; Windows) giúp PM, PM game, BA, Content, Dev và Game developer hiểu app, game và website đối thủ qua giao diện chat.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@
           </a>
         </div>
         <div class="topbar-right">
-          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.2/iAtlas-1.0.2-macos-arm64.dmg">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.3/iAtlas-1.0.3-macos-arm64.dmg">
             <span class="btn-download-icon" aria-hidden="true">↓</span>
             <span class="btn-download-text">
               <span class="btn-download-title">Tải iAtlas</span>
@@ -70,13 +70,13 @@
         <section class="hero">
           <p class="eyebrow">Tài liệu người dùng · iKame Global</p>
           <h1 class="hero-title">
-            Hiểu app đối thủ<br>
+            Hiểu app và game đối thủ<br>
             <span class="grad">chỉ bằng cách hỏi</span>
           </h1>
           <p class="hero-lead">
-            iAtlas là app desktop đọc hộ bạn bên trong app Android và website đối thủ,
+            iAtlas là app desktop đọc hộ bạn bên trong app Android, game và website đối thủ,
             rồi trả lời bằng tiếng thường ngay trong khung chat.
-            <strong>Không cần biết kỹ thuật, không cần điện thoại, không cần subscribe app đối thủ</strong>
+            <strong>Không cần biết kỹ thuật, không cần điện thoại, không cần subscribe app hay mua IAP trong game đối thủ</strong>
             chỉ để xem họ làm flow gì.
           </p>
 
@@ -98,10 +98,61 @@
           </div>
         </section>
 
+        <h2 id="truoc-khi-co-iatlas">Trước khi có iAtlas — và giờ giải quyết thế nào</h2>
+        <p class="section-lead">
+          Cùng một bài toán cho team app và team game: hiểu đối thủ mà không phải chơi tay,
+          subscribe, mua IAP hay chờ Dev mổ build.
+        </p>
+
+        <div class="compare">
+          <article class="compare-card compare-before">
+            <h3>Trước đây</h3>
+            <ul>
+              <li>
+                <strong>PM app:</strong> tải về, bấm tay từng màn để đoán luồng — tốn thời gian mà vẫn thiếu.
+                Logic ẩn (mở khoá, paywall, lúc chèn ads) test tay không phủ hết. Nhiều flow còn phải
+                subscribe gói trả phí mới thấy.
+              </li>
+              <li>
+                <strong>PM game:</strong> tải về, chơi tay từng màn để đoán luồng — tốn thời gian mà vẫn thiếu.
+                Logic ẩn (hết lượt thì hiện ads, lúc nào bán gói, phần thưởng mỗi ngày) chơi tay không phủ hết.
+                Nhiều flow còn phải xem ads hoặc mua gói của đối thủ mới thấy.
+              </li>
+              <li>
+                <strong>Content:</strong> mở từng màn, từng item để đọc thủ công.
+              </li>
+              <li>
+                <strong>Dev / Game Dev:</strong> tự dò API, schema; game thì dump IL2CPP / grep smali,
+                map SDK ads–IAP hộ PM.
+              </li>
+            </ul>
+          </article>
+
+          <article class="compare-card compare-after">
+            <h3>Với iAtlas</h3>
+            <p>
+              Dán package name Google Play, kéo thả APK, hoặc dán URL website — app tự phân tích rồi báo xong.
+              Sau đó hỏi thẳng bằng một câu:
+            </p>
+            <ul>
+              <li>Vẽ sơ đồ bao quát toàn bộ luồng và các trường hợp trong app / game đối thủ.</li>
+              <li>
+                Truy vết tính năng ẩn: flow kiếm tiền (IAP), vị trí quảng cáo (IAA), điều kiện rẽ nhánh.
+                Game cũng vậy — lúc hết lượt hiện ads, lúc bán gói, phần thưởng mỗi ngày.
+              </li>
+              <li>Cần content: một câu prompt, iAtlas viết script crawl, kéo dữ liệu về máy.</li>
+              <li>
+                Dev có sẵn danh mục API, schema, API graph. Game Dev có logic + class đã khôi phục,
+                SDK map — khỏi tự dò.
+              </li>
+            </ul>
+          </article>
+        </div>
+
         <h2 id="danh-cho-ai">Dành cho ai?</h2>
         <p class="section-lead">
-          Bốn nhóm dùng chung một app, nhưng hỏi những câu khác nhau — dưới đây là
-          công dụng cụ thể của từng bộ phận.
+          PM, BA, Content, Dev — và cả PM game cùng Game developer — dùng chung một app,
+          hỏi những câu khác nhau. App thường hay game đều đọc được.
         </p>
 
         <div class="roles">
@@ -115,6 +166,20 @@
               <li><strong>Flow kiếm tiền:</strong> gói IAP, thời điểm hiện offer, màn paywall, điều kiện mở khoá.</li>
               <li><strong>Quảng cáo (IAA):</strong> vị trí hiển thị, loại ad, khi nào chèn giữa luồng.</li>
               <li><strong>Flow hoạt động của từng tính năng:</strong> tính năng của app đối thủ chạy thế nào, màn nào nối màn nào, điều kiện để mở.</li>
+              <li><strong>So sánh nhanh:</strong> đối chiếu tính năng đối thủ với backlog của mình trước khi quyết định làm.</li>
+            </ul>
+          </article>
+
+          <article class="role role-game-pm">
+            <header class="role-head">
+              <span class="role-badge">GAME</span>
+              <h3>PM Game</h3>
+            </header>
+            <p class="role-sum">Xem game đối thủ đang làm gì mà không phải chờ Dev “mổ” game.</p>
+            <ul class="role-uses">
+              <li><strong>Flow kiếm tiền:</strong> gói mua trong game, thời điểm hiện offer, lúc hết lượt / hết mạng thì hỏi mua.</li>
+              <li><strong>Quảng cáo (IAA):</strong> vị trí hiển thị, xem ads để tiếp tục chơi / thêm vật phẩm / nhân đôi thưởng.</li>
+              <li><strong>Flow hoạt động của từng tính năng:</strong> một ván chơi chạy thế nào, màn nào nối màn nào, điều kiện để mở.</li>
               <li><strong>So sánh nhanh:</strong> đối chiếu tính năng đối thủ với backlog của mình trước khi quyết định làm.</li>
             </ul>
           </article>
@@ -160,6 +225,20 @@
               <li><strong>Draft database:</strong> gợi ý bảng và cột tương ứng với dữ liệu đã thu được.</li>
             </ul>
           </article>
+
+          <article class="role role-game-dev">
+            <header class="role-head">
+              <span class="role-badge">GDEV</span>
+              <h3>Game Developer</h3>
+            </header>
+            <p class="role-sum">Có sẵn cấu trúc C# (Unity) và danh sách API thay vì tự dump IL2CPP.</p>
+            <ul class="role-uses">
+              <li><strong>Logic trong game:</strong> công thức damage, drop rate, regen năng lượng — dẫn đúng class đã khôi phục.</li>
+              <li><strong>API / protocol:</strong> endpoint, header, payload server game gọi.</li>
+              <li><strong>SDK map:</strong> ads, IAP, analytics, attribution đã nhúng sẵn.</li>
+              <li><strong>Config &amp; bảng dữ liệu:</strong> remote config, bảng drop, giá gói nằm ở đâu.</li>
+            </ul>
+          </article>
         </div>
 
         <h2>Hai loại dự án</h2>
@@ -167,8 +246,9 @@
           <div class="mode">
             <h3>APK</h3>
             <p>
-              Phân tích app Android theo <em>package name</em>
+              Phân tích app hoặc game Android theo <em>package name</em>
               (ví dụ <code>com.example.app</code>). App tự tải APK (nếu bật),
+              nhận diện công nghệ (Java, Flutter, React Native, Unity…),
               phân tích tĩnh và chuẩn bị crawl nội dung / API.
             </p>
           </div>
@@ -184,7 +264,7 @@
         <div class="callout callout-info">
           <strong>Không cần thiết bị thật hay máy ảo</strong>
           <p>
-            Phân tích app dựa trên file APK và công cụ tĩnh trên máy bạn.
+            Phân tích app và game dựa trên file APK và công cụ tĩnh trên máy bạn.
             Không yêu cầu root, Frida, hay copy token từ điện thoại.
           </p>
         </div>
@@ -198,7 +278,7 @@
           </li>
           <li>
             <strong>Tạo project</strong>
-            Nhập package name của app Android, hoặc địa chỉ website, rồi bấm chạy.
+            Nhập package name của app hoặc game Android, hoặc địa chỉ website, rồi bấm chạy.
           </li>
           <li>
             <strong>Hỏi agent</strong>

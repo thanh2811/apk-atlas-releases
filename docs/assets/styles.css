@@ -345,12 +345,21 @@ pre code {
   box-shadow: 0 1px 2px rgba(14, 17, 20, 0.06);
 }
 
+.os-tablist[aria-label="Loại demo"] .os-tab {
+  flex: 1 1 0;
+  text-align: center;
+}
+
 .os-panel {
   display: none;
 }
 
 .os-panel.is-active {
   display: block;
+}
+
+.os-panel > h2:first-child {
+  margin-top: 0.35rem;
 }
 
 .os-panel > .steps {
@@ -554,6 +563,69 @@ li > ol {
   color: var(--primary);
 }
 
+/* --- Trước đây / Với iAtlas --- */
+
+.compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.compare-card {
+  padding: 1.2rem 1.25rem 1.3rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+
+.compare-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+}
+
+.compare-card p,
+.compare-card li {
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+}
+
+.compare-card strong {
+  color: var(--ink);
+}
+
+.compare-card ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.compare-card li {
+  margin-bottom: 0.55rem;
+}
+
+.compare-card li:last-child {
+  margin-bottom: 0;
+}
+
+.compare-before {
+  border-top: 4px solid var(--ink-faint);
+}
+
+.compare-after {
+  border-top: 4px solid var(--primary);
+}
+
+.compare-after > p {
+  margin: 0 0 0.75rem;
+}
+
+@media (max-width: 860px) {
+  .compare {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* --- Dành cho ai --- */
 
 .section-lead {
@@ -605,6 +677,16 @@ li > ol {
 .role-dev {
   --role-a: #4b6cd6;
   --role-b: #1d7f8c;
+}
+
+.role-game-pm {
+  --role-a: #7c3aed;
+  --role-b: #f78623;
+}
+
+.role-game-dev {
+  --role-a: #0f766e;
+  --role-b: #4b6cd6;
 }
 
 .role-head {

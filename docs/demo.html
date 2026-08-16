@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Demo — iAtlas</title>
-  <meta name="description" content="Ảnh chụp thật từ iAtlas: tạo project, chạy phân tích, hỏi agent, xem API và file kết quả.">
+  <meta name="description" content="Ảnh chụp thật từ iAtlas: phân tích game hoặc app Android, chạy pipeline, hỏi agent, xem API và file kết quả.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@
           </a>
         </div>
         <div class="topbar-right">
-          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.2/iAtlas-1.0.2-macos-arm64.dmg">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.3/iAtlas-1.0.3-macos-arm64.dmg">
             <span class="btn-download-icon" aria-hidden="true">↓</span>
             <span class="btn-download-text">
               <span class="btn-download-title">Tải iAtlas</span>
@@ -70,8 +70,8 @@
         <p class="eyebrow">Xem trước · ảnh chụp từ máy thật</p>
         <h1>Demo</h1>
         <p class="lead">
-          Một lần dùng iAtlas kể bằng ảnh: tạo project cho app muốn xem, đợi phân tích xong,
-          rồi hỏi bằng tiếng thường. Bấm vào ảnh bất kỳ để xem cỡ lớn.
+          Một lần dùng iAtlas kể bằng ảnh: tạo project cho game hoặc app muốn xem, đợi phân tích xong,
+          rồi hỏi bằng tiếng thường. Chọn tab bên dưới — bấm vào ảnh bất kỳ để xem cỡ lớn.
         </p>
 
         <div class="flow" aria-label="Luồng trong demo">
@@ -82,71 +82,142 @@
           <span>Hỏi agent</span>
         </div>
 
-        <h2 id="apk">Đọc một app Android</h2>
-        <p class="section-lead">
-          Chỉ cần package name của app trên Google Play. iAtlas tự tải file cài đặt về máy bạn
-          rồi phân tích, không đụng đến điện thoại.
-        </p>
+        <div class="os-tabs" data-tabs="demo">
+          <div class="os-tablist" role="tablist" aria-label="Loại demo">
+            <button type="button" class="os-tab is-active" role="tab" data-tab="game" aria-selected="true" aria-controls="panel-game" id="tab-game">Game</button>
+            <button type="button" class="os-tab" role="tab" data-tab="app" aria-selected="false" aria-controls="panel-app" id="tab-app" tabindex="-1">App</button>
+          </div>
 
-        <div class="demo-grid">
-          <article class="demo-card">
-            <header class="demo-head">
-              <span class="demo-step">01</span>
-              <h3>Tạo project APK</h3>
-            </header>
-            <p>
-              Chọn <strong>Type: APK</strong>, để nguồn là <strong>Store</strong> (hoặc
-              <strong>This computer</strong> nếu bạn đã có sẵn file APK), dán package name dạng
-              <code>com.example.app</code> rồi bấm <strong>Create project</strong>.
-              Ô <em>Name</em> chỉ để dễ nhận ra project trong danh sách.
+          <div class="os-panel is-active" role="tabpanel" data-panel="game" id="panel-game" aria-labelledby="tab-game">
+            <h2 id="game">Đọc một game Android</h2>
+            <p class="section-lead">
+              Cùng thao tác với app: dán package name trên Google Play. iAtlas tự tải game về máy,
+              phân tích, rồi trả lời câu hỏi về ads, IAP, vòng chơi hay công thức trong game.
             </p>
-            <figure class="shot demo-shot demo-shot-narrow" data-demo-slot="apk-new-project.png">
-              <a href="assets/demo/apk-new-project.png" target="_blank" rel="noopener">
-                <img src="assets/demo/apk-new-project.png" alt="Hộp thoại New project của iAtlas với loại APK và ô nhập package name">
-              </a>
-              <figcaption>
-                Giữ bật <em>Download &amp; decompile right after creating</em> thì app tải và phân tích luôn —
-                không phải bấm gì thêm.
-              </figcaption>
-            </figure>
-          </article>
 
-          <article class="demo-card">
-            <header class="demo-head">
-              <span class="demo-step">02</span>
-              <h3>Pipeline chạy xong 4/4</h3>
-            </header>
-            <p>Bốn bước tự động: tải app → giải nén → nhận diện công nghệ → quét phần lõi.</p>
-            <figure class="shot shot-wide demo-shot" data-demo-slot="pipeline-done.png">
-              <a href="assets/pipeline-done.png" target="_blank" rel="noopener">
-                <img src="assets/pipeline-done.png" alt="Màn Agent của iAtlas khi pipeline đã chạy xong 4/4 bước">
-              </a>
-              <figcaption>Thấy <strong>4 / 4 · complete</strong> ở sidebar trái là hỏi được rồi.</figcaption>
-            </figure>
-          </article>
+            <div class="demo-grid">
+              <article class="demo-card">
+                <header class="demo-head">
+                  <span class="demo-step">01</span>
+                  <h3>Tạo project game</h3>
+                </header>
+                <p>
+                  Chọn <strong>Type: APK</strong>, để nguồn là <strong>Store</strong> (hoặc
+                  <strong>This computer</strong> nếu bạn đã có sẵn file APK), dán package name của game
+                  dạng <code>com.example.game</code> rồi bấm <strong>Create project</strong>.
+                  Ô <em>Name</em> chỉ để dễ nhận ra project trong danh sách.
+                </p>
+                <figure class="shot demo-shot demo-shot-narrow" data-demo-slot="game-new-project.png">
+                  <a href="assets/demo/game-new-project.png" target="_blank" rel="noopener">
+                    <img src="assets/demo/game-new-project.png" alt="Hộp thoại New project: loại APK, nguồn Store, package name com.ig.screwdom, tên Screwdom">
+                  </a>
+                  <figcaption>
+                    Giữ bật <em>Download &amp; decompile right after creating</em> thì game tải và phân tích luôn —
+                    không phải bấm gì thêm.
+                  </figcaption>
+                </figure>
+              </article>
 
-          <article class="demo-card">
-            <header class="demo-head">
-              <span class="demo-step">03</span>
-              <h3>Hỏi một câu thật</h3>
-            </header>
-            <blockquote class="prompt">
-              “Đây là app sức khỏe, tính calory của món ăn. App có thuật toán riêng chấm điểm độ
-              “healthy” của sản phẩm (ví dụ 48/100). Có check được logic tính điểm này không?”
-            </blockquote>
-            <figure class="shot shot-wide demo-shot" data-demo-slot="chat-example.png">
-              <a href="assets/chat-example.png" target="_blank" rel="noopener">
-                <img src="assets/chat-example.png" alt="Agent trả lời câu hỏi về cách app chấm điểm healthy">
-              </a>
-              <figcaption>Agent trả lời kết luận trước, rồi dẫn đúng file làm bằng chứng và gợi ý bước tiếp theo.</figcaption>
-            </figure>
-          </article>
+              <article class="demo-card">
+                <header class="demo-head">
+                  <span class="demo-step">02</span>
+                  <h3>Pipeline chạy xong</h3>
+                </header>
+                <p>Bốn bước tự động: tải game → giải nén → nhận diện công nghệ → quét phần lõi.</p>
+                <figure class="shot shot-wide demo-shot" data-demo-slot="game-pipeline-done.png">
+                  <a href="assets/demo/game-pipeline-done.png" target="_blank" rel="noopener">
+                    <img src="assets/demo/game-pipeline-done.png" alt="Màn Agent của iAtlas khi pipeline game đã chạy xong 4/4 bước">
+                  </a>
+                  <figcaption>Thấy <strong>4 / 4 · complete</strong> ở sidebar trái là hỏi được rồi.</figcaption>
+                </figure>
+              </article>
+
+              <article class="demo-card">
+                <header class="demo-head">
+                  <span class="demo-step">03</span>
+                  <h3>Hỏi một câu thật</h3>
+                </header>
+                <blockquote class="prompt">
+                  “phân tích kịch bản show reward ad ở màn chơi game”
+                </blockquote>
+                <figure class="shot shot-wide demo-shot" data-demo-slot="game-chat-example.png">
+                  <a href="assets/demo/game-chat-example.png" target="_blank" rel="noopener">
+                    <img src="assets/demo/game-chat-example.png" alt="Agent trả lời logic reward ads trong màn chơi: revive, booster, 2x endgame">
+                  </a>
+                  <figcaption>Agent trả lời kết luận trước — revive, booster, 2x endgame — rồi dẫn đúng popup làm bằng chứng.</figcaption>
+                </figure>
+              </article>
+            </div>
+          </div>
+
+          <div class="os-panel" role="tabpanel" data-panel="app" id="panel-app" aria-labelledby="tab-app" hidden>
+            <h2 id="app">Đọc một app Android</h2>
+            <p class="section-lead">
+              Chỉ cần package name của app trên Google Play. iAtlas tự tải file cài đặt về máy bạn
+              rồi phân tích, không đụng đến điện thoại.
+            </p>
+
+            <div class="demo-grid">
+              <article class="demo-card">
+                <header class="demo-head">
+                  <span class="demo-step">01</span>
+                  <h3>Tạo project APK</h3>
+                </header>
+                <p>
+                  Chọn <strong>Type: APK</strong>, để nguồn là <strong>Store</strong> (hoặc
+                  <strong>This computer</strong> nếu bạn đã có sẵn file APK), dán package name dạng
+                  <code>com.example.app</code> rồi bấm <strong>Create project</strong>.
+                  Ô <em>Name</em> chỉ để dễ nhận ra project trong danh sách.
+                </p>
+                <figure class="shot demo-shot demo-shot-narrow" data-demo-slot="apk-new-project.png">
+                  <a href="assets/demo/apk-new-project.png" target="_blank" rel="noopener">
+                    <img src="assets/demo/apk-new-project.png" alt="Hộp thoại New project của iAtlas với loại APK và ô nhập package name">
+                  </a>
+                  <figcaption>
+                    Giữ bật <em>Download &amp; decompile right after creating</em> thì app tải và phân tích luôn —
+                    không phải bấm gì thêm.
+                  </figcaption>
+                </figure>
+              </article>
+
+              <article class="demo-card">
+                <header class="demo-head">
+                  <span class="demo-step">02</span>
+                  <h3>Pipeline chạy xong 4/4</h3>
+                </header>
+                <p>Bốn bước tự động: tải app → giải nén → nhận diện công nghệ → quét phần lõi.</p>
+                <figure class="shot shot-wide demo-shot" data-demo-slot="pipeline-done.png">
+                  <a href="assets/pipeline-done.png" target="_blank" rel="noopener">
+                    <img src="assets/pipeline-done.png" alt="Màn Agent của iAtlas khi pipeline đã chạy xong 4/4 bước">
+                  </a>
+                  <figcaption>Thấy <strong>4 / 4 · complete</strong> ở sidebar trái là hỏi được rồi.</figcaption>
+                </figure>
+              </article>
+
+              <article class="demo-card">
+                <header class="demo-head">
+                  <span class="demo-step">03</span>
+                  <h3>Hỏi một câu thật</h3>
+                </header>
+                <blockquote class="prompt">
+                  “Đây là app sức khỏe, tính calory của món ăn. App có thuật toán riêng chấm điểm độ
+                  “healthy” của sản phẩm (ví dụ 48/100). Có check được logic tính điểm này không?”
+                </blockquote>
+                <figure class="shot shot-wide demo-shot" data-demo-slot="chat-example.png">
+                  <a href="assets/chat-example.png" target="_blank" rel="noopener">
+                    <img src="assets/chat-example.png" alt="Agent trả lời câu hỏi về cách app chấm điểm healthy">
+                  </a>
+                  <figcaption>Agent trả lời kết luận trước, rồi dẫn đúng file làm bằng chứng và gợi ý bước tiếp theo.</figcaption>
+                </figure>
+              </article>
+            </div>
+          </div>
         </div>
 
         <div class="callout callout-info">
           <strong>Ảnh chụp trên máy thật, không dựng</strong>
           <p>
-            Mọi ảnh ở trang này chụp từ iAtlas đang chạy. Tên app và tên miền trong ảnh
+            Mọi ảnh ở trang này chụp từ iAtlas đang chạy. Tên app, tên game và tên miền trong ảnh
             có thể được làm mờ khi liên quan đối tác.
           </p>
         </div>
@@ -154,10 +225,18 @@
         <details class="doc-roadmap">
           <summary>Cho người quản trị trang: cách thêm ảnh demo</summary>
           <p>
-            Mỗi ô ảnh trên đọc đúng một file trong <code>docs/assets/demo/</code>.
+            Mỗi ô ảnh trên đọc đúng một file trong <code>docs/assets/demo/</code>
+            (một số ảnh app cũ nằm ở <code>docs/assets/</code>).
             Ô nào chưa có file thì hiện khung chờ kèm tên file cần đặt — thả ảnh vào đúng tên đó,
             reload trang là hiện, không phải sửa HTML.
           </p>
+          <p><strong>Tab Game</strong></p>
+          <ol class="roadmap">
+            <li><code>assets/demo/game-new-project.png</code> — hộp thoại New project, package name của game.</li>
+            <li><code>assets/demo/game-pipeline-done.png</code> — màn Agent khi pipeline game xong.</li>
+            <li><code>assets/demo/game-chat-example.png</code> — agent trả lời một câu hỏi về game.</li>
+          </ol>
+          <p><strong>Tab App</strong></p>
           <ol class="roadmap">
             <li><code>assets/demo/apk-new-project.png</code> — hộp thoại New project, loại APK.</li>
             <li><code>assets/pipeline-done.png</code> — màn Agent khi pipeline xong 4/4.</li>
