@@ -2,10 +2,11 @@
 
 Public downloads and docs for **iAtlas**.
 
-## Download iAtlas 1.0.3
+## Download iAtlas 1.0.4
 
-- [**⬇ macOS Apple Silicon (DMG)**](https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.3/iAtlas-1.0.3-macos-arm64.dmg)
-- [**⬇ Windows x64 (EXE)**](https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.3/iAtlas-1.0.3-windows-x64.exe)
+- [**⬇ macOS Apple Silicon (DMG)**](https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.4/iAtlas-1.0.4-macos-arm64.dmg)
+- [**⬇ Windows x64 (EXE)**](https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.3/iAtlas-1.0.3-windows-x64.exe) — bản 1.0.3; bản Windows 1.0.4 sẽ có sau
+- macOS Intel: sẽ có sau
 
 All versions: [Releases](https://github.com/thanh2811/apk-atlas-releases/releases)
 

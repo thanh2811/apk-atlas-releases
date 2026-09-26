@@ -5,7 +5,7 @@
 (function () {
   var RELEASES_URL = "https://github.com/thanh2811/apk-atlas-releases/releases";
   var MACOS_ARM64_DMG =
-    "https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.3/iAtlas-1.0.3-macos-arm64.dmg";
+    "https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.4/iAtlas-1.0.4-macos-arm64.dmg";
   var WINDOWS_X64_EXE =
     "https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.3/iAtlas-1.0.3-windows-x64.exe";
   var DOWNLOADS = {
