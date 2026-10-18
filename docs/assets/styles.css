@@ -1,28 +1,107 @@
-/* iAtlas docs — light docs theme aligned with product blue accent */
+/* iAtlas docs — light + dark themes mirroring the desktop app palette (ApkRePalette) */
 
+/* Light (default). Values follow the app's light ramp. */
 :root {
-  --bg: #f4f7fb;
+  color-scheme: light;
+  --bg: #eef0f3;
   --bg-elevated: #ffffff;
-  --ink: #0e1114;
-  --ink-muted: #454f59;
-  --ink-faint: #738496;
-  --border: #d5dee8;
-  --border-subtle: rgba(14, 17, 20, 0.08);
-  --primary: #f78623;
-  --primary-hover: #d96e14;
+  --ink: #151b26;
+  --ink-muted: #4a5568;
+  --ink-faint: #667085;
+  --border: #d6dae0;
+  --border-subtle: rgba(11, 27, 51, 0.12);
+  --primary: #f07a12;
+  --primary-hover: #e06d0a;
   --primary-soft: rgba(247, 134, 35, 0.12);
+  --link: #b95300;
+  --link-hover: #8f4000;
   --teal: #1d7f8c;
   --teal-soft: rgba(29, 127, 140, 0.12);
-  --warn-bg: #fff8e6;
-  --warn-border: #e2b203;
-  --warn-ink: #5f3811;
-  --code-bg: #eef2f7;
-  --shadow: 0 1px 2px rgba(14, 17, 20, 0.04), 0 8px 24px rgba(14, 17, 20, 0.06);
+  --warn-bg: #fff5d1;
+  --warn-border: #c99a00;
+  --warn-ink: #7a5a00;
+  --code-bg: #f4f5f7;
+  --shadow: 0 1px 2px rgba(11, 27, 51, 0.05), 0 8px 24px rgba(11, 27, 51, 0.08);
+  /* Frosted glass over the wallpaper (sidebar, topbar, tabs). */
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-strong: rgba(255, 255, 255, 0.88);
+  --glass-hover: rgba(255, 255, 255, 0.65);
+  /* Space wallpaper behind every page, and the veil that keeps body text readable on it. */
+  --wallpaper: url("bg-space-light.jpg");
+  --page-veil: linear-gradient(180deg, rgba(238, 240, 243, 0.62), rgba(238, 240, 243, 0.78));
+  --hero-veil: linear-gradient(100deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.82) 45%, rgba(255, 255, 255, 0.3) 100%);
+  --placeholder-bg: #fff3cd;
+  --placeholder-border: #c9a227;
   --radius: 10px;
   --nav-width: 240px;
   --content-max: 46rem;
   --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* Dark: explicit choice, or the OS preference when the visitor has not picked one. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0e1114;
+  --bg-elevated: #1d2125;
+  --ink: #c7d1db;
+  --ink-muted: #9fadbc;
+  --ink-faint: #8c9bab;
+  --border: #38414a;
+  --border-subtle: rgba(245, 192, 137, 0.12);
+  --primary: #f78623;
+  --primary-hover: #ff9b42;
+  --primary-soft: rgba(247, 134, 35, 0.16);
+  --link: #ffb05c;
+  --link-hover: #ffc98a;
+  --teal: #60c6d2;
+  --teal-soft: rgba(29, 127, 140, 0.24);
+  --warn-bg: #533f04;
+  --warn-border: #e2b203;
+  --warn-ink: #f5cd47;
+  --code-bg: #161a1d;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --glass: rgba(22, 26, 29, 0.68);
+  --glass-strong: rgba(22, 26, 29, 0.84);
+  --glass-hover: rgba(255, 255, 255, 0.06);
+  --wallpaper: url("bg-space-dark.jpg");
+  --page-veil: linear-gradient(180deg, rgba(14, 17, 20, 0.74), rgba(14, 17, 20, 0.86));
+  --hero-veil: linear-gradient(100deg, rgba(14, 17, 20, 0.9) 0%, rgba(14, 17, 20, 0.74) 45%, rgba(14, 17, 20, 0.2) 100%);
+  --placeholder-bg: #533f04;
+  --placeholder-border: #e2b203;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0e1114;
+    --bg-elevated: #1d2125;
+    --ink: #c7d1db;
+    --ink-muted: #9fadbc;
+    --ink-faint: #8c9bab;
+    --border: #38414a;
+    --border-subtle: rgba(245, 192, 137, 0.12);
+    --primary: #f78623;
+    --primary-hover: #ff9b42;
+    --primary-soft: rgba(247, 134, 35, 0.16);
+    --link: #ffb05c;
+    --link-hover: #ffc98a;
+    --teal: #60c6d2;
+    --teal-soft: rgba(29, 127, 140, 0.24);
+    --warn-bg: #533f04;
+    --warn-border: #e2b203;
+    --warn-ink: #f5cd47;
+    --code-bg: #161a1d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    --glass: rgba(22, 26, 29, 0.68);
+    --glass-strong: rgba(22, 26, 29, 0.84);
+    --glass-hover: rgba(255, 255, 255, 0.06);
+    --wallpaper: url("bg-space-dark.jpg");
+    --page-veil: linear-gradient(180deg, rgba(14, 17, 20, 0.74), rgba(14, 17, 20, 0.86));
+    --hero-veil: linear-gradient(100deg, rgba(14, 17, 20, 0.9) 0%, rgba(14, 17, 20, 0.74) 45%, rgba(14, 17, 20, 0.2) 100%);
+    --placeholder-bg: #533f04;
+    --placeholder-border: #e2b203;
+  }
 }
 
 *,
@@ -42,20 +121,30 @@ body {
   font-size: 1rem;
   line-height: 1.65;
   color: var(--ink);
+  background: var(--bg);
+}
+
+/* Fixed space wallpaper under every page (a pseudo-element, since iOS ignores background-attachment: fixed). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background:
-    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(247, 134, 35, 0.12), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(29, 127, 140, 0.08), transparent 50%),
-    var(--bg);
+    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(247, 134, 35, 0.1), transparent 55%),
+    var(--page-veil),
+    var(--wallpaper) center / cover no-repeat;
 }
 
 a {
-  color: var(--primary);
+  color: var(--link);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.15em;
 }
 
 a:hover {
-  color: var(--primary-hover);
+  color: var(--link-hover);
 }
 
 img {
@@ -116,8 +205,9 @@ pre code {
   height: 100vh;
   padding: 1.5rem 1.25rem;
   border-right: 1px solid var(--border-subtle);
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(10px);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -205,8 +295,9 @@ pre code {
   gap: 1rem;
   padding: 0.75rem 1.25rem;
   border-bottom: 1px solid var(--border-subtle);
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
+  background: var(--glass-strong);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
   position: sticky;
   top: 0;
   z-index: 20;
@@ -248,6 +339,54 @@ pre code {
 .menu-btn:hover {
   border-color: var(--primary);
   color: var(--primary);
+}
+
+/* Day/night switch: shows the sun in dark mode (tap for light) and the moon in light mode. */
+.theme-toggle {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--ink-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun {
+    display: block;
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon {
+    display: none;
+  }
 }
 
 .btn-download {
@@ -336,7 +475,7 @@ pre code {
 
 .os-tab:hover {
   color: var(--primary);
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--glass-hover);
 }
 
 .os-tab.is-active {
@@ -440,10 +579,11 @@ li > ol {
   padding: 2.5rem 2rem 2.25rem;
   border-radius: 22px;
   border: 1px solid var(--border-subtle);
+  /* The wallpaper shows through clearest here: veiled on the text side, open on the right. */
   background:
-    radial-gradient(ellipse 70% 90% at 0% 0%, rgba(247, 134, 35, 0.18), transparent 60%),
-    radial-gradient(ellipse 60% 80% at 100% 10%, rgba(29, 127, 140, 0.16), transparent 62%),
-    linear-gradient(160deg, #ffffff 0%, #fbfcfe 55%, #f2f6fb 100%);
+    radial-gradient(ellipse 70% 90% at 0% 0%, rgba(247, 134, 35, 0.16), transparent 60%),
+    var(--hero-veil),
+    var(--wallpaper) 70% 30% / cover no-repeat;
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -1219,10 +1359,10 @@ tr:last-child td {
 .placeholder {
   font-family: var(--font-mono);
   font-size: 0.9em;
-  background: #fff3cd;
+  background: var(--placeholder-bg);
   padding: 0.1em 0.35em;
   border-radius: 4px;
-  border: 1px dashed #c9a227;
+  border: 1px dashed var(--placeholder-border);
 }
 
 .prompt-list {
@@ -1646,5 +1786,17 @@ body.lightbox-open {
     text-align: center;
     font-size: 0.82rem;
     padding: 0.5rem 0.55rem;
+  }
+}
+
+/* Narrow phones: drop the topbar wordmark (the logo stays) so the theme switch and download button fit. */
+@media (max-width: 480px) {
+  .topbar-brand .brand-name {
+    display: none;
+  }
+
+  .theme-toggle {
+    width: 2.2rem;
+    height: 2.2rem;
   }
 }

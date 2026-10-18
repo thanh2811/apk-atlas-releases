@@ -1,5 +1,5 @@
 /**
- * iAtlas docs — OS detect, download CTA, setup tabs, visit counter.
+ * iAtlas docs — OS detect, download CTA, setup tabs, visit counter, light/dark theme switch.
  * Binaries live on public repo thanh2811/apk-atlas-releases.
  */
 (function () {
@@ -474,7 +474,32 @@
     if (backdrop) backdrop.addEventListener("click", closeNav);
   }
 
+  var STORE_THEME = "iatlas.docs.theme";
+
+  /** Theme on screen now: the explicit choice if any, else what the OS prefers. */
+  function currentTheme() {
+    var explicit = document.documentElement.getAttribute("data-theme");
+    if (explicit === "light" || explicit === "dark") return explicit;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+  function bindThemeToggle() {
+    var btn = document.getElementById("themeToggle");
+    if (!btn) return;
+    function sync() {
+      btn.setAttribute("aria-pressed", currentTheme() === "dark" ? "true" : "false");
+    }
+    btn.addEventListener("click", function () {
+      var next = currentTheme() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      writeStore(STORE_THEME, next);
+      sync();
+    });
+    sync();
+  }
+
   function init() {
+    bindThemeToggle();
     bindNav();
     bindSetupTabs();
     bindPlainTabs();
