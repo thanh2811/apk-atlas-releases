@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" role="img" aria-label="iAtlas">
+  <defs>
+    <linearGradient id="bg" x1="512" y1="0" x2="512" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFA048"/>
+      <stop offset="0.48" stop-color="#F78623"/>
+      <stop offset="1" stop-color="#DE6510"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="34%" cy="28%" r="70%">
+      <stop stop-color="#FFD2A0" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#FF9B3A" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#DE6510" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="50%" cy="58%" r="70%">
+      <stop stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.16"/>
+    </radialGradient>
+    <linearGradient id="sparkle" x1="512" y1="200" x2="512" y2="824" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.55" stop-color="#FFF8F0"/>
+      <stop offset="1" stop-color="#FFE8CC"/>
+    </linearGradient>
+    <radialGradient id="core" cx="50%" cy="46%" r="55%">
+      <stop stop-color="#FFE9C4"/>
+      <stop offset="1" stop-color="#FFD19A" stop-opacity="0.85"/>
+    </radialGradient>
+    <filter id="lift" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="12" result="blur"/>
+      <feOffset dy="8" result="off"/>
+      <feFlood flood-color="#A84400" flood-opacity="0.32" result="color"/>
+      <feComposite in="color" in2="off" operator="in" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="squircle">
+      <rect x="0" y="0" width="1024" height="1024" rx="228" ry="228"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#squircle)">
+    <rect width="1024" height="1024" fill="url(#bg)"/>
+    <rect width="1024" height="1024" fill="url(#glow)"/>
+    <rect width="1024" height="1024" fill="url(#vignette)"/>
+    <!-- ~12% inset: stroke outer edge near 123px -->
+    <g stroke="#FFF9F2" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M142 274V142H274"/>
+      <path d="M882 274V142H750"/>
+      <path d="M142 750V882H274"/>
+      <path d="M882 750V882H750"/>
+      <path d="M512 142V238"/>
+      <path d="M512 786V882"/>
+      <path d="M142 512H238"/>
+      <path d="M786 512H882"/>
+    </g>
+    <path filter="url(#lift)" d="M512 204C560 348 670 458 814 506C670 554 560 664 512 808C464 664 354 554 210 506C354 458 464 348 512 204Z" fill="url(#sparkle)"/>
+    <path d="M512 356C536 424 588 476 656 500C588 524 536 576 512 644C488 576 436 524 368 500C436 476 488 424 512 356Z" fill="url(#core)"/>
+  </g>
+</svg>

@@ -1,13 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none" role="img" aria-label="iAtlas">
-  <rect width="36" height="36" rx="9" fill="#F78623"/>
-  <path d="M10 10H13.5V11.8H11.8V13.5H10V10Z" fill="#FFF9F2"/>
-  <path d="M26 10H22.5V11.8H24.2V13.5H26V10Z" fill="#FFF9F2"/>
-  <path d="M10 26H13.5V24.2H11.8V22.5H10V26Z" fill="#FFF9F2"/>
-  <path d="M26 26H22.5V24.2H24.2V22.5H26V26Z" fill="#FFF9F2"/>
-  <path d="M18 9.8V12.4" stroke="#FFF9F2" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M18 23.6V26.2" stroke="#FFF9F2" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M9.8 18H12.4" stroke="#FFF9F2" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M23.6 18H26.2" stroke="#FFF9F2" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M18 11.6C19.1 14.5 21.5 16.9 24.4 18C21.5 19.1 19.1 21.5 18 24.4C16.9 21.5 14.5 19.1 11.6 18C14.5 16.9 16.9 14.5 18 11.6Z" fill="#FFF9F2"/>
-  <path d="M18 15C18.6 16.6 19.9 17.9 21.5 18.5C19.9 19.1 18.6 20.4 18 22C17.4 20.4 16.1 19.1 14.5 18.5C16.1 17.9 17.4 16.6 18 15Z" fill="#FFE0B8"/>
+  <defs>
+    <linearGradient id="bg" x1="18" y1="0" x2="18" y2="36" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFA048"/>
+      <stop offset="0.48" stop-color="#F78623"/>
+      <stop offset="1" stop-color="#DE6510"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="34%" cy="28%" r="70%">
+      <stop stop-color="#FFD2A0" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#DE6510" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sparkle" x1="18" y1="7" x2="18" y2="29" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFE8CC"/>
+    </linearGradient>
+  </defs>
+  <rect width="36" height="36" rx="9" fill="url(#bg)"/>
+  <rect width="36" height="36" rx="9" fill="url(#glow)"/>
+  <g stroke="#FFF9F2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M5.2 9.8V5.2H9.8"/>
+    <path d="M30.8 9.8V5.2H26.2"/>
+    <path d="M5.2 26.2V30.8H9.8"/>
+    <path d="M30.8 26.2V30.8H26.2"/>
+    <path d="M18 5.2V8.5"/>
+    <path d="M18 27.5V30.8"/>
+    <path d="M5.2 18H8.5"/>
+    <path d="M27.5 18H30.8"/>
+  </g>
+  <path d="M18 7.4C19.6 12.1 23.4 15.9 28.1 17.5C23.4 19.1 19.6 22.9 18 27.6C16.4 22.9 12.6 19.1 7.9 17.5C12.6 15.9 16.4 12.1 18 7.4Z" fill="url(#sparkle)"/>
+  <path d="M18 12.6C18.8 14.9 20.6 16.7 22.9 17.5C20.6 18.3 18.8 20.1 18 22.4C17.2 20.1 15.4 18.3 13.1 17.5C15.4 16.7 17.2 14.9 18 12.6Z" fill="#FFE0B8" fill-opacity="0.92"/>
 </svg>
