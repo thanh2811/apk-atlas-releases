@@ -72,7 +72,7 @@
               <path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/>
             </svg>
           </button>
-          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.5/iAtlas-1.0.5-macos-arm64.dmg">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.6/iAtlas-1.0.6-macos-arm64.dmg">
             <span class="btn-download-icon" aria-hidden="true">↓</span>
             <span class="btn-download-text">
               <span class="btn-download-title">Tải iAtlas</span>
@@ -100,7 +100,7 @@
         <h2>Setup tải Chromium chậm hoặc fail</h2>
         <ul>
           <li>Chromium ~300&nbsp;MB — đợi hết hoặc bấm <strong>Retry</strong>.</li>
-          <li>Có thể <strong>Continue anyway</strong>: app vẫn mở; crawl <strong>Web</strong> và Browser có thể chưa dùng được cho đến khi Chromium sẵn sàng.</li>
+          <li>Có thể <strong>Continue anyway</strong>: app vẫn mở; crawl <strong>Web</strong> có thể chưa dùng được cho đến khi Chromium sẵn sàng.</li>
           <li>Project <strong>APK</strong> thường vẫn chạy nếu toolchain + Python ổn.</li>
         </ul>
 
@@ -109,35 +109,56 @@
           <li>Kiểm tra đúng <em>package name</em> (dạng <code>com.xxx.yyy</code>) và kết nối mạng.</li>
           <li>Nguồn tải phụ thuộc dịch vụ bên thứ ba — có thể tạm lỗi; thử lại sau hoặc hỏi agent bước tiếp.</li>
           <li>Nếu đã có file APK trong workspace từ lần trước, pipeline có thể dùng bản đã cache.</li>
+          <li>Đã có sẵn file APK trên máy: tạo project mới, chọn nguồn <strong>This computer</strong> rồi kéo file vào.</li>
         </ul>
 
+        <h2>Chat bị khoá, chỉ hiện bảng “Preparing…”</h2>
+        <ul>
+          <li>Project APK phải chuẩn bị xong thì ô chat mới mở — đợi đến khi bảng tự đóng.</li>
+          <li>Thấy <em>Waiting for … to finish</em> hoặc <em>Queued</em>: một project khác đang được chuẩn bị, project này tự chạy ngay sau đó.</li>
+          <li>Một bước bị lỗi: bấm <strong>Try again</strong>, hoặc <strong>Open chat anyway</strong> để hỏi luôn với phần đã có.</li>
+          <li>Hiện <em>has no app yet</em>: lúc tạo bạn đã tắt tải sẵn — bấm <strong>Get &amp; prepare the app</strong>.</li>
+        </ul>
+
+        <h2>Không thấy tab APIs / Browser nữa?</h2>
+        <p>
+          Từ bản 1.0.6, mỗi khung chat chỉ còn nút gạt <strong>Agent / Sources</strong>.
+          Danh sách API, script và dữ liệu agent làm ra đều nằm trong khung <strong>Output</strong> bên phải —
+          cứ hỏi agent bằng tiếng thường. Xem <a href="usage.html#man-lam-viec">màn làm việc</a>.
+        </p>
+
         <h2>Cloudflare / CAPTCHA trên project Web</h2>
-        <ol>
-          <li>Mở tab <strong>Browser</strong>.</li>
-          <li>Hoàn thành challenge trên trang.</li>
-          <li>Trong Agent chat, trả lời <code>done</code>.</li>
-        </ol>
-        <p>Không cần copy cookie thủ công.</p>
+        <p>
+          Agent tự chờ cho phần lớn trang xác minh tự qua trong trình duyệt có sẵn của iAtlas.
+          Nếu vẫn bị chặn, agent sẽ nói rõ trong chat cần bạn làm gì — trả lời ngay trong ô chat.
+          Không cần copy cookie thủ công.
+        </p>
 
         <h2>Dữ liệu nằm ở đâu?</h2>
         <p>Thư mục gốc: <code>~/.ai-crawler/</code></p>
         <ul>
           <li><code>tools/</code> — công cụ đã tải</li>
           <li><code>work/</code> — từng project (smali, chat, artifact tạm)</li>
-          <li><code>output/</code> — kết quả crawl / report / script</li>
+          <li><code>output/</code> — kết quả crawl / report / script; mỗi việc một thư mục <code>&lt;project&gt;/&lt;thời điểm&gt;-&lt;tên việc&gt;/</code>, xem ngay ở khung <strong>Output</strong> bên phải màn Agent</li>
           <li><code>config/</code> — settings (ví dụ <code>settings.properties</code>)</li>
         </ul>
 
-        <h2>Xóa / đổi tên project</h2>
+        <h2>Xóa / đổi tên / nhân bản project</h2>
         <p>
-          Trên sidebar Context: dùng dialog rename / delete của project.
-          Xóa project sẽ dọn dữ liệu liên quan trong workspace — cân nhắc trước khi xác nhận.
+          Ở cột trái màn Agent, rê chuột vào tên project rồi bấm <strong>⋯</strong> →
+          <em>Rename</em>, <em>Duplicate project</em> hoặc <em>Delete project</em>.
+          Xóa project sẽ xoá thư mục làm việc và lịch sử chat của project đó — cân nhắc trước khi xác nhận.
+        </p>
+        <p>
+          Muốn tách hai hướng phân tích cho cùng một app: dùng <em>Duplicate project</em>, hoặc tạo project mới
+          với cùng package name — iAtlas làm thêm một project riêng (nếu để trống ô Name, tên tự đánh số như “Tên (2)”) và dùng lại file APK đã tải.
         </p>
 
         <h2>Đổi model hoặc nhà cung cấp AI</h2>
         <p>
           Vào <strong>Settings</strong>: Claude CLI (mặc định) hoặc API key Anthropic;
           có thể cấu hình thêm OpenAI / Gemini nếu team cho phép. Đổi model / effort tại đây rồi thử lại chat.
+          Cũng đổi nhanh được ngay ở hàng dưới ô chat.
         </p>
 
         <h2>macOS báo không mở được app</h2>

@@ -72,7 +72,7 @@
               <path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/>
             </svg>
           </button>
-          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.5/iAtlas-1.0.5-macos-arm64.dmg">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.6/iAtlas-1.0.6-macos-arm64.dmg">
             <span class="btn-download-icon" aria-hidden="true">↓</span>
             <span class="btn-download-text">
               <span class="btn-download-title">Tải iAtlas</span>
@@ -104,10 +104,67 @@
         </div>
 
         <ol class="releases">
-          <li class="release is-latest" id="v1-0-5">
+          <li class="release is-latest" id="v1-0-6">
+            <div class="release-head">
+              <h2 class="release-ver">1.0.6</h2>
+              <span class="release-badge">Mới nhất</span>
+              <span class="release-date">20/10/2026</span>
+            </div>
+
+            <p class="release-sum">
+              Màn làm việc mới: mở nhiều chat cạnh nhau, đính kèm file và thư mục, giao diện sáng / tối.
+            </p>
+
+            <div class="change-group">
+              <span class="change-tag tag-new">Mới</span>
+              <ul class="change-list">
+                <li><strong>Làm nhiều việc cùng lúc.</strong> Mở tới 4 khung chat cạnh nhau, mỗi khung một project và một cuộc chat riêng, mỗi khung có các tab chat của nó. Các chat chạy song song, không lẫn câu trả lời của nhau.</li>
+                <li><strong>Danh sách project mới bên trái.</strong> Project và các chat của nó xếp thành cây, có ô tìm kiếm; menu từng project cho tạo chat, đổi tên, nhân bản, xoá.</li>
+                <li><strong>Đính kèm file và thư mục.</strong> Chọn, kéo thả hoặc dán (Cmd+V) file và thư mục từ Finder vào khung chat; gõ <code>@</code> để nhắc tới một file. Nút <strong>+</strong> còn cho thêm project khác làm ngữ cảnh và dùng skill có sẵn trên máy.</li>
+                <li><strong>Giao diện sáng / tối.</strong> Mặc định theo macOS; đổi nhanh bằng nút ngày / đêm ở thanh bên trái hoặc trong Settings → Appearance. Khung chat có nền vũ trụ phủ kính mờ.</li>
+              </ul>
+            </div>
+
+            <div class="change-group">
+              <span class="change-tag tag-improve">Cải thiện</span>
+              <ul class="change-list">
+                <li><strong>Kết quả gom về một chỗ.</strong> Script, dữ liệu và báo cáo agent tạo ra nằm trong thư mục output của project, hiện ở khung <strong>Output</strong> bên phải và tự cập nhật khi có file mới.</li>
+                <li><strong>Thấy rõ project đang chuẩn bị tới đâu.</strong> Trong lúc tải và phân tích app, khung chat hiện từng bước với tiến độ; nếu lỗi thì có nút thử lại hoặc vẫn mở chat.</li>
+                <li><strong>Project website gọn hơn.</strong> Chat mở ngay, agent tự đọc trang và viết script crawl — không còn bước <em>Run pipeline</em> và các tab <em>APIs</em> / <em>Browser</em>; mỗi khung chỉ còn tab <strong>Agent</strong> và <strong>Sources</strong>.</li>
+              </ul>
+            </div>
+
+            <details class="release-more">
+              <summary>Xem thêm…</summary>
+
+              <div class="change-group">
+                <span class="change-tag tag-new">Mới</span>
+                <ul class="change-list">
+                  <li>Tạo được nhiều project cho cùng một app — bản sao được đánh số và dùng lại file APK đã tải.</li>
+                  <li>Thanh trạng thái dưới cùng: model đang dùng, mức dùng gói Claude, số agent đang chạy.</li>
+                  <li>Tên chat lấy từ câu bạn hỏi đầu tiên.</li>
+                  <li>Settings có tuỳ chọn <strong>Reduce motion</strong> tắt hiệu ứng chuyển động.</li>
+                </ul>
+              </div>
+
+              <div class="change-group">
+                <span class="change-tag tag-fix">Sửa lỗi</span>
+                <ul class="change-list">
+                  <li>Xem trước file Markdown không còn bị treo, và bôi đen chọn chữ được.</li>
+                </ul>
+              </div>
+            </details>
+
+            <p class="release-files">
+              Bộ cài:
+              <a href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.6/iAtlas-1.0.6-macos-arm64.dmg">iAtlas-1.0.6-macos-arm64.dmg</a>
+              <span class="release-note">· bản Windows và macOS Intel của 1.0.6 sẽ có sau — Windows dùng bản 1.0.5 bên dưới.</span>
+            </p>
+          </li>
+
+          <li class="release" id="v1-0-5">
             <div class="release-head">
               <h2 class="release-ver">1.0.5</h2>
-              <span class="release-badge">Mới nhất</span>
               <span class="release-date">13/10/2026</span>
             </div>
 

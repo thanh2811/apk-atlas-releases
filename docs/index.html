@@ -72,7 +72,7 @@
               <path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/>
             </svg>
           </button>
-          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.5/iAtlas-1.0.5-macos-arm64.dmg">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.6/iAtlas-1.0.6-macos-arm64.dmg">
             <span class="btn-download-icon" aria-hidden="true">↓</span>
             <span class="btn-download-text">
               <span class="btn-download-title">Tải iAtlas</span>
@@ -271,8 +271,8 @@
           <div class="mode">
             <h3>Web</h3>
             <p>
-              Phân tích website từ URL gốc. Dùng trình duyệt tích hợp;
-              nếu gặp Cloudflare/CAPTCHA bạn hoàn thành trên tab Browser rồi trả lời <code>done</code>.
+              Phân tích website từ URL gốc. Ô chat mở ngay; agent dùng trình duyệt tích hợp để đọc trang
+              và lấy dữ liệu, tự chờ trang xác minh Cloudflare/CAPTCHA — chỉ nhờ bạn khi thật sự bị chặn.
             </p>
           </div>
         </div>
@@ -294,12 +294,13 @@
           </li>
           <li>
             <strong>Tạo project</strong>
-            Nhập package name của app hoặc game Android, hoặc địa chỉ website, rồi bấm chạy.
+            Nhập package name (hoặc link Google Play) của app, game Android, hoặc địa chỉ website,
+            rồi bấm <strong>Create project</strong> — app tự chuẩn bị, xong là ô chat mở.
           </li>
           <li>
             <strong>Hỏi agent</strong>
-            Gõ câu hỏi bằng tiếng thường và nói rõ bạn muốn kết quả ở dạng nào —
-            xem <a href="usage.html">prompt mẫu theo vai trò</a>.
+            Gõ câu hỏi bằng tiếng thường và nói rõ bạn muốn kết quả ở dạng nào — file kết quả hiện ở
+            khung <strong>Output</strong> bên phải. Xem <a href="usage.html">prompt mẫu theo vai trò</a>.
           </li>
         </ol>
 
@@ -309,7 +310,7 @@
           <ol class="roadmap">
           <li>Thư viện prompt mẫu theo kịch bản (IAP, IAA, rating, tracking, onboarding).</li>
           <li>Glossary thuật ngữ bằng tiếng thường (package name, API graph, pipeline…).</li>
-          <li>Ảnh chụp màn hình Setup / Home / APIs / Browser / Output.</li>
+          <li>Ảnh chụp màn hình Setup / màn Agent (nhiều khung chat) / Output theo giao diện 1.0.6.</li>
           <li>Video ngắn 3–5 phút: từ cài app đến crawl APK đầu tiên.</li>
           <li>Trang bảo mật &amp; tuân thủ nội bộ iKame (phạm vi dùng, bản quyền nội dung).</li>
           <li>Troubleshooting nâng cao (log trong <code>~/.ai-crawler</code>, Settings).</li>

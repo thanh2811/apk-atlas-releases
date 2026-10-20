@@ -72,7 +72,7 @@
               <path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/>
             </svg>
           </button>
-          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.5/iAtlas-1.0.5-macos-arm64.dmg">
+          <a class="btn-download" id="downloadBtn" href="https://github.com/thanh2811/apk-atlas-releases/releases/download/v1.0.6/iAtlas-1.0.6-macos-arm64.dmg">
             <span class="btn-download-icon" aria-hidden="true">↓</span>
             <span class="btn-download-text">
               <span class="btn-download-title">Tải iAtlas</span>
@@ -88,7 +88,7 @@
         <p class="lead">
           Ba việc lặp lại mỗi ngày: tạo project cho app, game hoặc website muốn xem,
           đợi iAtlas phân tích xong, rồi hỏi agent bằng tiếng thường.
-          Kết quả xem ở tab <strong>APIs</strong> hoặc màn <strong>Output</strong>.
+          Mọi file kết quả hiện ngay ở khung <strong>Output</strong> bên phải.
         </p>
 
         <h2>Luồng tổng quan</h2>
@@ -99,13 +99,15 @@
           <span class="arrow" aria-hidden="true">→</span>
           <span>Hỏi agent</span>
           <span class="arrow" aria-hidden="true">→</span>
-          <span>Lấy kết quả ở APIs / Output</span>
+          <span>Lấy kết quả ở Output</span>
         </div>
 
         <p>
-          Ba màn chính: <strong>Agent</strong> (làm việc) · <strong>Output</strong> (file kết quả) ·
-          <strong>Settings</strong>. Trong một project có 4 tab:
-          <strong>Agent</strong> · <strong>Sources</strong> · <strong>APIs</strong> · <strong>Browser</strong>.
+          Thanh icon ngoài cùng bên trái có ba màn: <strong>Agent</strong> (làm việc) ·
+          <strong>Output</strong> (file kết quả) · <strong>Settings</strong>.
+          Màn <strong>Agent</strong> chia ba cột: danh sách project và chat bên trái,
+          các khung chat ở giữa, khung <strong>Output</strong> bên phải — xem
+          <a href="#man-lam-viec">phần 3</a>.
         </p>
 
         <h2>1. Tạo project &amp; chạy phân tích</h2>
@@ -125,37 +127,39 @@
             <ol class="steps">
               <li>
                 <strong>Mở New project</strong>
-                Ở màn <strong>Agent</strong>, sidebar trái → <strong>New project</strong> → chọn loại <strong>APK</strong>.
+                Ở màn <strong>Agent</strong>, bấm dấu <strong>+</strong> cạnh chữ <strong>Projects</strong>
+                ở cột trái (khi chưa mở project nào, giữa màn hình cũng có nút <strong>New project</strong>)
+                → chọn loại <strong>APK</strong>.
               </li>
               <li>
-                <strong>Nhập package name</strong>
-                Dạng <code>com.example.app</code> — lấy từ link Google Play của app hoặc game
-                (phần sau <code>?id=</code>). Ô <em>Name</em> để trống cũng được.
+                <strong>Nhập package name hoặc dán link Google Play</strong>
+                Dạng <code>com.example.app</code>, hoặc dán nguyên link Google Play của app / game —
+                iAtlas tự lấy package name từ link. Đã có sẵn file APK trên máy thì chọn nguồn
+                <strong>This computer</strong> và kéo file vào. Ô <em>Name</em> để trống cũng được.
               </li>
               <li>
                 <strong>Bấm Create project</strong>
                 Giữ nguyên ô <em>Download &amp; decompile right after creating</em> (mặc định bật) thì
                 app tự tải APK và phân tích luôn — không phải bấm gì thêm.
+                Đã có project cho app này rồi vẫn tạo thêm được: iAtlas làm một project riêng
+                (nếu để trống ô Name, tên tự đánh số như “Tên (2)”) và dùng lại file APK đã tải.
               </li>
               <li>
-                <strong>Đợi 4 bước ở mục Pipeline</strong>
-                <span class="flow flow-inline" aria-label="Các bước phân tích APK">
-                  <span>Download</span><span class="arrow" aria-hidden="true">→</span>
-                  <span>Decompile</span><span class="arrow" aria-hidden="true">→</span>
-                  <span>Detect framework</span><span class="arrow" aria-hidden="true">→</span>
-                  <span>Native scan</span>
+                <strong>Đợi bảng “Preparing…” chạy xong</strong>
+                Trong lúc chuẩn bị, khung chat hiện danh sách các bước kèm phần trăm:
+                <span class="flow flow-inline" aria-label="Các bước chuẩn bị project APK">
+                  <span>Chuẩn bị công cụ</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Tải app</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Giải nén code</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Nhận diện công nghệ</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Quét &amp; phân tích phần lõi (native)</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Đọc code Unity (chỉ game Unity)</span><span class="arrow" aria-hidden="true">→</span>
+                  <span>Lập chỉ mục tìm kiếm</span>
                 </span>
-                Xong bước cuối là hỏi agent được. Nếu lúc tạo bạn tắt ô tải sẵn, bấm
-                <strong>Download &amp; decompile</strong> ở sidebar.
-                <figure class="shot shot-wide">
-                  <a href="assets/pipeline-done.png" target="_blank" rel="noopener">
-                    <img src="assets/pipeline-done.png" alt="Màn Agent của iAtlas khi pipeline đã chạy xong 4/4 bước">
-                  </a>
-                  <figcaption>
-                    Pipeline hiện <strong>4 / 4 · complete</strong> ở sidebar trái — lúc này gõ câu hỏi vào ô chat được rồi.
-                    Bấm vào ảnh để xem cỡ lớn.
-                  </figcaption>
-                </figure>
+                Xong là ô chat tự mở — không phải bấm gì. Nếu một bước lỗi, bấm
+                <strong>Try again</strong> để chạy lại, hoặc <strong>Open chat anyway</strong> để hỏi luôn
+                với phần đã có. Nếu lúc tạo bạn tắt ô tải sẵn, bấm <strong>Get &amp; prepare the app</strong>
+                ngay trong khung đó.
               </li>
             </ol>
           </div>
@@ -164,7 +168,7 @@
             <ol class="steps">
               <li>
                 <strong>Mở New project</strong>
-                Sidebar trái → <strong>New project</strong> → chọn loại <strong>Web</strong>.
+                Bấm dấu <strong>+</strong> cạnh chữ <strong>Projects</strong> ở cột trái → chọn loại <strong>Web</strong>.
               </li>
               <li>
                 <strong>Nhập địa chỉ trang</strong>
@@ -172,23 +176,19 @@
                 — không cần trang chủ.
               </li>
               <li>
-                <strong>Bấm Create project, rồi Run pipeline</strong>
-                Project Web không tự chạy: bấm nút <strong>Run pipeline</strong> ở góc trên bên phải.
-                Muốn nói rõ mục tiêu, gõ vào ô chat trước khi bấm.
+                <strong>Bấm Create project — ô chat mở ngay</strong>
+                Project Web không có bước chuẩn bị. Gõ luôn vào ô chat bạn muốn lấy gì: mục nào,
+                bao nhiêu trang, xuất dạng bảng / CSV / JSON.
               </li>
               <li>
-                <strong>Đợi 4 bước ở mục Pipeline</strong>
-                <span class="flow flow-inline" aria-label="Các bước phân tích web">
-                  <span>Probe</span><span class="arrow" aria-hidden="true">→</span>
-                  <span>Browser</span><span class="arrow" aria-hidden="true">→</span>
-                  <span>Fingerprint</span><span class="arrow" aria-hidden="true">→</span>
-                  <span>Crawl</span>
-                </span>
+                <strong>Agent tự đọc trang và lấy dữ liệu</strong>
+                Agent mở trang bằng trình duyệt có sẵn trong iAtlas, tự viết và chạy script lấy dữ liệu.
+                Script và dữ liệu hiện dần ở khung <strong>Output</strong> bên phải.
               </li>
               <li>
                 <strong>Nếu trang bắt xác minh (Cloudflare / CAPTCHA)</strong>
-                Agent sẽ dừng và nhắc bạn. Mở tab <strong>Browser</strong>, làm xác minh trên trang,
-                rồi bấm <strong>I've completed challenge</strong> — hoặc gõ <code>done</code> vào ô chat.
+                Agent tự chờ cho phần lớn trang xác minh tự qua. Nếu vẫn bị chặn, agent sẽ nói rõ trong
+                chat cần bạn làm gì — trả lời ngay trong ô chat.
                 Không cần copy cookie hay đăng nhập ở đâu khác.
               </li>
             </ol>
@@ -196,11 +196,13 @@
         </div>
 
         <div class="callout callout-info">
-          <strong>Mỗi lúc chỉ chạy được một phân tích</strong>
+          <strong>Mỗi lúc chỉ chuẩn bị một project</strong>
           <p>
-            Đang chạy project này thì project khác phải đợi — nhưng bạn vẫn chat được với agent
-            ở mọi project. Kết quả từng lần chạy nằm trong
-            <code>~/.ai-crawler/output/&lt;project&gt;/&lt;thời điểm&gt;/</code>, mở nhanh ở màn <strong>Output</strong>.
+            Đang chuẩn bị project này thì project khác tự xếp hàng (hiện <em>Queued</em>) và tự chạy
+            khi tới lượt — không phải bấm lại. Chat thì không phải đợi: nhiều chat ở nhiều project
+            chạy cùng lúc được. Mỗi việc agent làm có một thư mục riêng trong
+            <code>~/.ai-crawler/output/&lt;project&gt;/&lt;thời điểm&gt;-&lt;tên việc&gt;/</code>,
+            hiện ngay ở khung <strong>Output</strong> bên phải.
           </p>
         </div>
 
@@ -232,27 +234,95 @@
         <ul>
           <li>Nói rõ định dạng bạn muốn: bảng, CSV, JSON, checklist, hay sơ đồ — agent xuất đúng dạng đó.</li>
           <li>Đang phân tích mà agent hỏi lại, trả lời ngay trong ô chat rồi bấm <strong>Answer &amp; resume</strong> để chạy tiếp.</li>
-          <li>Hỏi sang chủ đề khác thì bấm <strong>New chat</strong>; xem lại thread cũ ở <strong>History</strong>.</li>
-          <li>Chat quá dài, agent chậm: bấm <strong>Compact</strong> để rút gọn ngữ cảnh, hoặc <strong>Clear</strong> để xoá hẳn nội dung chat hiện tại.</li>
+          <li>Agent đang làm mà muốn dừng: bấm <strong>Stop</strong> ở thanh trạng thái ngay trên ô chat.</li>
+          <li>Hỏi sang chủ đề khác thì bấm dấu <strong>+</strong> cuối hàng tab để mở chat mới; xem lại chat cũ bằng icon đồng hồ (<em>Chat history</em>) ở góc phải hàng tab.</li>
+          <li>Chat quá dài, agent chậm: bấm icon xoá chat (<em>Clear this chat</em>) ở góc phải hàng tab rồi xác nhận để xoá nội dung và trí nhớ của chat hiện tại — chat vẫn giữ nguyên tên và chỗ.</li>
+          <li>Đổi nhanh model và mức suy nghĩ (<em>Effort</em>) ngay ở hàng dưới ô chat.</li>
+          <li>Muốn câu trả lời viết kiểu dân kỹ thuật: <strong>Settings</strong> → <em>Answers written for</em> → <strong>Developer</strong>. Mặc định là <strong>Non-tech</strong> (tiếng thường); chỉ cách viết thay đổi, nội dung và giá trị cần thiết giữ nguyên.</li>
         </ul>
 
-        <h2>3. Các tab — khi nào mở</h2>
+        <h2 id="man-lam-viec">3. Màn làm việc — project, chat và Output</h2>
+        <p>
+          Màn <strong>Agent</strong> bày như một bàn làm việc: chọn project bên trái, chat ở giữa,
+          lấy file bên phải.
+        </p>
+
         <dl class="tabs-guide">
-          <dt>Agent</dt>
-          <dd>Nơi hỏi đáp và theo dõi tiến trình phân tích. Dùng nhiều nhất.</dd>
-          <dt>Sources</dt>
-          <dd>Cây file đã giải mã, chỉ đọc — mở khi muốn tự kiểm chứng một chi tiết.</dd>
-          <dt>APIs</dt>
-          <dd>Danh sách endpoint tìm được kèm header, tham số. Chỉnh <em>Max pages</em> / <em>Skip detail pages</em> trước khi crawl.</dd>
-          <dt>Browser</dt>
-          <dd>Chỉ project Web — xem trang thật, làm xác minh khi bị chặn.</dd>
-          <dt>Output</dt>
-          <dd>Toàn bộ file của các lần chạy: báo cáo, script, dữ liệu mẫu.</dd>
+          <dt>Cột trái — Projects</dt>
+          <dd>
+            Mọi project, mỗi project mở ra thấy các chat của nó. Ô tìm kiếm trên cùng lọc theo tên project
+            và tên chat. Rê chuột vào tên project, bấm <strong>⋯</strong> để: tạo chat mới
+            (<em>New chat</em>), đổi tên (<em>Rename</em>), nhân bản (<em>Duplicate project</em> — thêm một
+            project cho cùng app), xoá (<em>Delete project</em>), hoặc thêm một thư mục trên máy cho agent đọc
+            cùng (<em>Add folder to this workspace…</em>). Chấm nhấp nháy cạnh một chat nghĩa là agent ở chat đó đang làm việc.
+          </dd>
+          <dt>Giữa — các khung chat</dt>
+          <dd>
+            Mở tối đa 4 khung chat cạnh nhau, mỗi khung gắn với một project và một chat riêng.
+            Bấm một chat ở cột trái để mở trong khung đang chọn; <kbd>Cmd</kbd>+bấm (hoặc chuột phải →
+            <em>Open in new pane</em>) để mở thành khung mới bên cạnh. Kéo vạch giữa hai khung để đổi độ rộng.
+          </dd>
+          <dt>Hàng tab của mỗi khung</dt>
+          <dd>
+            Bên trái là các tab chat (kéo để đổi thứ tự, dấu <strong>+</strong> để mở chat mới).
+            Bên phải: nút gạt <strong>Agent / Sources</strong>, lịch sử chat, xoá chat, tách khung
+            (<em>Split</em> — mở chat mới ngay bên cạnh), bật/tắt khung Output, và đóng khung.
+          </dd>
+          <dt>Agent / Sources</dt>
+          <dd>
+            <strong>Agent</strong> là khung chat, dùng nhiều nhất. <strong>Sources</strong> là cây file đã giải mã
+            của app, chỉ đọc — mở khi muốn tự kiểm chứng một chi tiết agent dẫn ra.
+          </dd>
+          <dt>Cột phải — Output</dt>
+          <dd>
+            Thư mục kết quả của project đang chọn: báo cáo, script, dữ liệu. File mới hiện ra ngay khi agent
+            tạo, không cần làm mới. Bấm một file để xem trước cỡ lớn; các nút trên cùng để làm mới, mở trong
+            Finder, hoặc mở màn Output đầy đủ. Mục <strong>Project</strong> ở cuối (bấm mũi tên để mở) cho
+            biết các bước chuẩn bị đã chạy thế nào. Ẩn/hiện khung bằng nút ở góc phải hàng tab hoặc
+            <kbd>Opt</kbd>+<kbd>Cmd</kbd>+<kbd>B</kbd>.
+          </dd>
+          <dt>Thanh dưới cùng</dt>
+          <dd>
+            Model đang dùng và mức đã dùng của gói Claude (bấm để xem chi tiết), số agent đang chạy và số
+            project đang chuẩn bị, cùng nút <strong>Support</strong> để gửi mail hỗ trợ.
+          </dd>
+          <dt>Output (thanh icon trái)</dt>
+          <dd>Màn xem đầy đủ file kết quả của từng project, khi cần nhiều chỗ hơn khung bên phải.</dd>
           <dt>Settings</dt>
-          <dd>Tài khoản AI, đường dẫn công cụ, kiểm tra khi có lỗi.</dd>
+          <dd>Tài khoản AI, model, giao diện, đường dẫn công cụ, kiểm tra khi có lỗi.</dd>
         </dl>
 
-        <h2>4. Prompt mẫu theo vai trò</h2>
+        <h2>4. Gửi kèm file và gọi tên bằng @</h2>
+        <ul>
+          <li>
+            <strong>Gửi kèm file, ảnh, thư mục:</strong> bấm dấu <strong>+</strong> trong ô chat để chọn,
+            dán bằng <kbd>Cmd</kbd>+<kbd>V</kbd> sau khi copy trong Finder, hoặc kéo thả thẳng vào ô chat.
+            Ảnh và file đi kèm tin nhắn tiếp theo; thư mục được ghim vào chat để mọi câu hỏi sau đều đọc được.
+          </li>
+          <li>
+            <strong>Menu dấu +</strong> còn có: chọn file trong các thư mục đã thêm
+            (<em>File from context folders</em>), thêm thư mục cho riêng chat này
+            (<em>Add folder to this chat…</em>), cho agent đọc cùng một project khác
+            (<em>Add another project</em> — tiện khi so sánh hai app), và dùng hoặc nhập một skill
+            (<em>Use a skill</em> / <em>Import skill…</em>) — skill là bộ hướng dẫn sẵn cho một loại việc.
+          </li>
+          <li>
+            <strong>Gõ <code>@</code></strong> trong ô chat để chọn nhanh một skill, hoặc một file trong các thư mục
+            bạn đã thêm vào project / chat. Dùng phím mũi tên và <kbd>Enter</kbd> để chọn,
+            <kbd>Esc</kbd> để đóng.
+          </li>
+        </ul>
+
+        <h2>5. Giao diện sáng / tối</h2>
+        <p>
+          Mặc định iAtlas sáng hay tối theo cài đặt của macOS. Muốn chọn hẳn một kiểu, gạt công tắc
+          ngày/đêm ở cuối thanh icon bên trái, hoặc vào <strong>Settings</strong> → <em>Appearance</em> →
+          <em>Theme</em> chọn <strong>Auto</strong> (theo máy), <strong>Day</strong> hoặc <strong>Night</strong>.
+          Khung chat có nền ảnh vũ trụ phủ kính mờ; máy chạy chậm thì bật <em>Reduce motion</em> trong cùng mục
+          để tắt hiệu ứng động và lớp kính mờ.
+        </p>
+
+        <h2>6. Prompt mẫu theo vai trò</h2>
         <div class="prompt-list">
           <blockquote class="prompt">
             <span class="who">PM / BA — IAP</span>
@@ -300,12 +370,12 @@
           </blockquote>
         </div>
 
-        <h2>5. Cần biết trước khi dùng</h2>
+        <h2>7. Cần biết trước khi dùng</h2>
         <ul>
           <li>Mọi phân tích chạy trên file đã tải về máy bạn — không cần điện thoại, máy ảo hay cài gì lên thiết bị.</li>
           <li>Bạn sẽ không bao giờ bị yêu cầu copy token hay cookie từ điện thoại.</li>
           <li>Phần kỹ thuật khó (ví dụ khoá bí mật nằm trong file của app) agent tự xử lý. Chỉ khi một bước bắt buộc phải có tài khoản, agent mới hỏi email/mật khẩu bạn đã có sẵn.</li>
-          <li>Mỗi lúc chỉ một project chạy phân tích; chat ở project khác vẫn bình thường.</li>
+          <li>Mỗi lúc chỉ một project được chuẩn bị, các project khác tự xếp hàng; còn chat thì nhiều chat chạy cùng lúc được.</li>
         </ul>
 
         <div class="cta-row">
